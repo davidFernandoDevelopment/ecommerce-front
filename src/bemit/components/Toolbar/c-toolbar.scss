@@ -1,0 +1,13 @@
+@use '../../tools' as mx;
+
+.c-toolbar {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mx.from(lg) {
+    justify-content: initial;
+    column-gap: 3rem;
+  }
+}

@@ -1,0 +1,33 @@
+.c-button {
+  display: inline-block;
+  color: #fff;
+  background-color: var(--button-color);
+  font-weight: var(--font-medium);
+  transition: 0.3s;
+  text-align: center;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: var(--button-color-alt);
+  }
+  &--gray {
+    background-color: hsl(0, 0%, 75%);
+    color: var(--title-color);
+
+    &:hover {
+      background-color: hsl(0, 0%, 63%);
+    }
+  }
+
+  &--normal {
+    padding: 1.25rem 2rem;
+  }
+
+  &--small {
+    padding: 0.5rem 1rem;
+  }
+
+  &--smaller {
+    padding: 0.5rem 0.5rem;
+  }
+}

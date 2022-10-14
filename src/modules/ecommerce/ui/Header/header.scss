@@ -1,0 +1,20 @@
+.header {
+  &__logo {
+    color: var(--title-color);
+    text-transform: uppercase;
+    font-weight: var(--font-semi-bold);
+    letter-spacing: 1.1px;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+
+    &-icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1.5rem;
+  }
+}

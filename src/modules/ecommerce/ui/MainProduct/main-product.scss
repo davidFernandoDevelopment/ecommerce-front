@@ -1,0 +1,81 @@
+@use '../../../../bemit/tools' as mx;
+
+.main-product {
+  padding: 1rem;
+  border-radius: 2rem;
+  background-image: linear-gradient(
+    to top left,
+    var(--first-color),
+    var(--title-color)
+  );
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 3fr 2fr;
+
+  @include mx.from(lg) {
+    padding: 2rem;
+  }
+
+  @include mx.from(xl) {
+    gap: 2rem;
+    padding: 3rem;
+  }
+
+  &__bg-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      border-radius: 2rem;
+    }
+  }
+
+  &__data {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+
+    &-content {
+      flex: 1;
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+
+    &-title {
+      color: inherit;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: var(--h2-font-size);
+
+      @include mx.from(lg) {
+        font-size: var(--h1-font-size);
+      }
+    }
+
+    &-description {
+      color: inherit;
+      display: none;
+      font-size: var(--normal-font-size);
+      line-height: 1.6;
+
+      @include mx.from(md) {
+        display: block;
+        font-size: var(--normal-font-size);
+      }
+      @include mx.from(lg) {
+        font-size: var(--h3-font-size);
+      }
+    }
+
+    &-price {
+      color: inherit;
+      text-align: center;
+      font-size: var(--h2-font-size);
+      font-weight: var(--font-medium);
+    }
+  }
+}

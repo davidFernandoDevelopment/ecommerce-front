@@ -1,0 +1,13 @@
+@use '../settings' as s;
+
+@mixin from($bp) {
+  @if map-has-key(s.$breakpoints, $bp) {
+    @media screen and (min-width: map_get(s.$breakpoints, $bp)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $bp) {
+      @content;
+    }
+  }
+}
