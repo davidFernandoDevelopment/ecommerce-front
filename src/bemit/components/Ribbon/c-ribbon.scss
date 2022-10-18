@@ -1,0 +1,49 @@
+.c-ribbon {
+  top: -5px;
+  left: -5px;
+  position: absolute;
+  overflow: hidden;
+
+  width: 75px;
+  height: 75px;
+
+  &__text {
+    top: 20%;
+    right: -90%;
+    position: absolute;
+    font-size: var(--small-font-size);
+
+    width: 225px;
+    padding: 5px 0;
+    transform: rotate(-45deg);
+
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: var(--font-medium);
+    text-transform: uppercase;
+
+    color: #fff;
+    background-color: var(--first-color);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    z-index: -1;
+    display: block;
+    position: absolute;
+    border: 7px solid var(--first-color-alt);
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+
+  &::before {
+    top: 0;
+    right: 0;
+  }
+  &::after {
+    left: 0;
+    bottom: 0;
+  }
+}

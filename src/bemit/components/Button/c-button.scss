@@ -30,4 +30,10 @@
   &--smaller {
     padding: 0.5rem 0.5rem;
   }
+
+  &--disabled {
+    pointer-events: none;
+    color: gray;
+    background-color: hsl(0, 0%, 75%);
+  }
 }

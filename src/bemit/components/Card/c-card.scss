@@ -1,0 +1,11 @@
+.c-card {
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgb(26 26 26 / 10%);
+
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--container-color);
+}

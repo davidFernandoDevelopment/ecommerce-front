@@ -1,0 +1,41 @@
+@use '../../../../bemit/tools/mixins.scss' as mx;
+
+.news-letter {
+  padding: 4rem 0 1rem;
+
+  &__bg {
+    border-radius: 10px;
+    display: grid;
+    background-color: var(--first-color);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    row-gap: 2.5rem;
+
+    @include mx.from(lg) {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      column-gap: 2rem;
+      text-align: initial;
+      padding: 4.5rem;
+    }
+  }
+
+  &__info {
+  }
+
+  &__title {
+    font-size: var(--h1-font-size);
+    color: hsl(0, 0%, 15%);
+    margin-bottom: var(--mb-1-5);
+  }
+
+  &__description {
+    color: hsl(0, 0%, 35%);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

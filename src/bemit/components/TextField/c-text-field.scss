@@ -1,0 +1,87 @@
+.c-text-field {
+  position: relative;
+  font-size: 1rem;
+  $b: &;
+
+  &__input {
+    width: 100%;
+    padding: 1em;
+    padding-right: 2.5em;
+    border-radius: 5px;
+    border: 1px solid var(--title-color);
+    transition: all 0.3s ease-in-out;
+
+    &:focus {
+      border-color: #00dfc4;
+    }
+
+    #{$b}.has-error & {
+      border-color: red;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: 0;
+    padding: 1em;
+    pointer-events: none;
+    border-color: transparent;
+    transition: all 0.3s ease-in-out;
+
+    #{$b}.is-open &,
+    #{$b}__input:focus ~ & {
+      transform: translateX(0.625em) translateY(-6px);
+      font-size: 0.65em;
+      padding: 0 0.625em;
+      letter-spacing: 0.2em;
+      background-color: white;
+      border-left: 1px solid;
+      border-right: 1px solid;
+    }
+
+    #{$b}__input:focus ~ & {
+      color: #00dfc4;
+      border-left: 1px solid #00dfc4;
+      border-right: 1px solid #00dfc4;
+    }
+
+    #{$b}.has-error.is-open &,
+    #{$b}.has-error #{$b}__input:focus ~ & {
+      color: red;
+      border-left: 1px solid red;
+      border-right: 1px solid red;
+    }
+
+    #{$b}.has-error & {
+      color: red;
+    }
+  }
+
+  &__error {
+    display: block;
+    font-size: 0.65em;
+    color: red;
+    padding-left: 1rem;
+    position: absolute;
+    margin-top: 0.5em;
+    transform: translateY(calc(-100% - 0.5em));
+    opacity: 0;
+
+    transition: 0.3s;
+
+    #{$b}.has-error & {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &__password {
+    display: flex;
+    font-size: 1.25em;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.5em;
+  }
+}

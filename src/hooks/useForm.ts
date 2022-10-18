@@ -7,12 +7,11 @@ export type FormValidation<T> = {
 
 //* Se agrega nuevas propiedades con el formato [${prop}Valid] para representar propiedades válidas.
 type FormResult<T> = {
-	[key in keyof T as `${string & key}Valid`]: string | null;
+	[key in keyof T as `${string & key}Valid`]: string;
 };
 
 //* Verificar si una propiedad fue tocada.
 type FormVerify<T> = { [key in keyof T]: boolean };
-
 
 //* Se requiere 2 parámetros genéricos T = Tipo de dato del state, [U = Sale de las props de T].
 export const useForm = <T, U extends keyof T = keyof T>(
@@ -27,8 +26,7 @@ export const useForm = <T, U extends keyof T = keyof T>(
 
 	const isFormValid = useMemo(() => {
 		for (const formValue of Object.keys(formValidation)) {
-			if (formValidation[formValue as keyof FormResult<T>] !== null)
-				return false;
+			if (formValidation[formValue as keyof FormResult<T>] !== '') return false;
 		}
 
 		return true;
@@ -39,19 +37,19 @@ export const useForm = <T, U extends keyof T = keyof T>(
 		//eslint-disable-next-line
 	}, [formState]);
 
-	// useEffect(() => {
-	// 	setFormState(initialForm);
-	// }, [initialForm]);
-
 	const onInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = target;
 		setFormState({
 			...formState,
 			[name]: value,
 		});
+		setTouched({
+			...touched,
+			[name]: true,
+		});
 	};
 
-	const onBlur = (e: FocusEvent<HTMLInputElement>) => {
+	const onBlurChange = (e: FocusEvent<HTMLInputElement>) => {
 		const { name } = e.target;
 		setTouched({
 			...touched,
@@ -83,8 +81,10 @@ export const useForm = <T, U extends keyof T = keyof T>(
 				let newProp: U = formField as U;
 				const [fn, errorMessage] = formValidations[newProp];
 				formCheckValues[`${formField}Valid`] = fn(formState[newProp])
-					? null
-					: errorMessage;
+					? ''
+					: !!formState[newProp]
+					? errorMessage
+					: 'Campo requerido';
 			}
 			setFormValidation(formCheckValues);
 		}
@@ -99,6 +99,6 @@ export const useForm = <T, U extends keyof T = keyof T>(
 		formState,
 		onInputChange,
 		onResetForm,
-		onBlur,
+		onBlurChange,
 	};
 };

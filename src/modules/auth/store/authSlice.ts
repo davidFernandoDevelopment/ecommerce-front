@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { User } from '../';
 import { Error } from '../../../services';
-import { AuthState, initialState } from './';
+import { AuthState, initialState } from './authState';
 
 export const authSlice = createSlice({
 	name: 'auth',

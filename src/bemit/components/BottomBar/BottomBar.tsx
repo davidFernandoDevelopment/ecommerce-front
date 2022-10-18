@@ -43,22 +43,22 @@ const BottomBar = ({ p, data }: Props) => {
 
     return (
         <div className={`c-bottom-bar ${classes}`}>
-            <ul ref={ref} className={`o-container c-bottom-bar__list ${classes}__list`}>
+            <ul ref={ref} className={`o-container c-bottom-bar__list ${classes ? `${classes}__list` : ''}`}>
                 {
                     data.map(({ icon, text, path }, index) => (
                         <li
                             key={index}
-                            className={`c-bottom-bar__item ${classes}__item`}
+                            className={`c-bottom-bar__item ${classes ? `${classes}__item` : ''}`}
                             onClick={handleClick(index + 1)}
                         >
-                            <Link to={path} className={`c-bottom-bar__link ${classes}__link`}>
-                                <span className={`c-bottom-bar__icon ${classes}__icon`}>{icon}</span>
-                                <span className={`c-bottom-bar__text ${classes}__text`}>{text}</span>
+                            <Link to={path} className={`c-bottom-bar__link ${classes ? `${classes}__link` : ''}`}>
+                                <span className={`c-bottom-bar__icon ${classes ? `${classes}__icon` : ''}`}>{icon}</span>
+                                <span className={`c-bottom-bar__text ${classes ? `${classes}__text` : ''}`}>{text}</span>
                             </Link>
                         </li>
                     ))
                 }
-                <div ref={indicator} className={`c-bottom-bar__indicator ${classes}__indicator`}></div>
+                <div ref={indicator} className={`c-bottom-bar__indicator ${classes ? `${classes}__indicator` : ''}`}></div>
             </ul>
         </div>
     );

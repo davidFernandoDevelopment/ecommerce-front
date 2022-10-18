@@ -1,0 +1,31 @@
+.o-section {
+  padding: 4rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__title {
+    position: relative;
+    font-size: var(--h3-font-size);
+    letter-spacing: 0.125rem;
+    text-align: center;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1rem;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      width: 67px;
+      height: 1px;
+      background-color: var(--first-color);
+    }
+  }
+
+  &__content {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}

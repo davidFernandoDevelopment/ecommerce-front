@@ -1,0 +1,62 @@
+.card-product {
+  //* Nodos exclusivos de CardProduct.
+  &__title {
+    flex: 1;
+  }
+
+  &__category {
+    text-align: left;
+    color: hsl(var(--hue-color), 100%, 40%);
+  }
+
+  &__price {
+    font-size: 1rem;
+    color: var(--title-color);
+  }
+
+  //* Referencia al componente Card.
+  &-card {
+    $b: &;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    position: relative;
+
+    .c-card-image {
+      margin-top: 2.25rem;
+    }
+
+    .c-card-content {
+      flex: 1;
+      padding: 0.5rem;
+      font-size: 0.75rem;
+      text-align: center;
+
+      gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  //* Referencia al component IconAction.
+  &__icon-action {
+    display: flex;
+    position: absolute;
+    padding: 0.25rem;
+
+    &--add {
+      right: 0;
+      bottom: 0;
+      color: white;
+      font-size: 1.5rem;
+      border-top-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      background-color: var(--title-color);
+    }
+
+    &--heart {
+      top: 0.25rem;
+      right: 0.25rem;
+      color: red;
+    }
+  }
+}

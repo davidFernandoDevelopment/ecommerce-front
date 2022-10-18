@@ -1,0 +1,36 @@
+.c-discount {
+  position: absolute;
+  padding: 0.5em;
+  padding-right: 1em;
+
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: var(--font-semi-bold);
+
+  border-radius: 0.125em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+
+  background-color: var(--first-color);
+
+  &::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 0.125em;
+    border-top-right-radius: 0.5em;
+
+    top: 0.3125em;
+    position: absolute;
+    transform: rotate(45deg);
+    left: calc(100% - 0.75em);
+
+    background-image: radial-gradient(
+      0.75em at 50% 50%,
+      white 50%,
+      var(--first-color) 50%
+    );
+  }
+}

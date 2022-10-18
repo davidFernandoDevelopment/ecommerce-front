@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const api = axios.create({
-	baseURL: process.env.REACT_APP_API_URL,
+export const api = axios.create({
+	baseURL: process.env.REACT_APP_FAKE_STORE,
 });
 
 const updateHeader = (request: AxiosRequestConfig<any>) => {
