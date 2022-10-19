@@ -8,19 +8,22 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     size?: 'smaller' | 'small' | 'normal';
     disabled?: boolean;
+    fullWidth?: boolean;
 }
 
 const Button = ({
     children,
-    size = 'normal',
     disabled,
+    fullWidth,
+    size = 'normal',
     ...rest
 }: Props) => {
 
     const classes = classNames([
         'c-button',
         `c-button--${size}`,
-        { 'c-button--disabled': disabled }
+        { 'c-button--disabled': disabled },
+        { 'c-button--fullwidth': fullWidth }
     ]);
 
     return (

@@ -11,8 +11,8 @@ interface Props {
 const Card = ({ p, children, className }: Props) => {
     const classes = classNames([
         'c-card',
-        { [`${p}-card`]: p },
-        { [`${p}`]: p && !className },
+        className,
+        { [`${p}-card`]: p }
     ]);
 
     return (

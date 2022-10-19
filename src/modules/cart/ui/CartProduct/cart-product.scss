@@ -1,0 +1,66 @@
+.cart-product {
+  position: relative;
+
+  //* Nodos propios del componente CartProduct.
+  &__title {
+    font-size: var(--h3-font-size);
+  }
+
+  &__price {
+    font-size: var(--normal-font-size);
+  }
+
+  &__summary {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__subtotal {
+    font-size: 1rem;
+    font-weight: var(--font-medium);
+  }
+
+  &__trash {
+    right: 0.75rem;
+    top: 0.75rem;
+    position: absolute;
+    color: rgb(153, 22, 22);
+  }
+
+  //* Referencia al componente Counter.
+  &-counter.counter {
+    flex: 1;
+    font-size: 1rem;
+    align-items: flex-end;
+  }
+
+  //* Referencia al componente Card.
+  &-card.c-card {
+    display: flex;
+    padding: 0.75rem;
+    flex-direction: row;
+    background-color: var(--card-color);
+    box-shadow: none;
+
+    //* Referencia al componente CardImage (children de Card).
+    .c-card-image {
+      width: 70px;
+      border-radius: 10px;
+      overflow: hidden;
+
+      &__img {
+        object-fit: contain;
+      }
+    }
+
+    //* Referencia al componente CardContent (children de Card).
+    .c-card-content {
+      flex: 1;
+      display: flex;
+      gap: 0.5em;
+      flex-direction: column;
+    }
+  }
+}

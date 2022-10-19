@@ -1,0 +1,19 @@
+.counter {
+  font-size: 1.125rem;
+
+  display: flex;
+  column-gap: 0.75em;
+  align-items: center;
+
+  &__button {
+    color: white;
+    padding: 0.25em;
+    font-size: inherit;
+    border-radius: 0.25em;
+    background-color: var(--button-color);
+  }
+
+  &__number {
+    padding: 0.125em;
+  }
+}

@@ -18,7 +18,6 @@ const MainProduct = () => {
                 </div>
                 <Button
                     size='small'
-                // onClick={() => handleClick(1)}
                 >
                     Agregar al carrito
                 </Button>

@@ -1,12 +1,13 @@
 import './o-container.scss';
 
 interface Props {
+    className?: string;
     children: React.ReactNode;
 }
 
-const Container = ({ children }: Props) => {
+const Container = ({ className, children }: Props) => {
     return (
-        <div className='o-container'>
+        <div className={`o-container ${className}`}>
             {children}
         </div>
     );
