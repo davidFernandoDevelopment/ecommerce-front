@@ -1,8 +1,10 @@
 .c-appbar {
   width: 100%;
 
-  z-index: var(--z-index);
+  z-index: 99;
   transition: 0.3s;
+
+  background-color: white;
 
   &--fixed {
     top: 0;

@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
 
 import './header.scss';
-import { Appbar, Button, IconButton, Menu, MenuItem, MenuList, Toolbar } from '../../../../bemit/components';
+import { Appbar, Badge, Button, IconButton, Menu, MenuItem, MenuList, Toolbar } from '../../../../bemit/components';
+import { uiStateService } from '../../../../services';
+import { useAppSelector } from '../../../../store/useStore';
 
 
 const options: { label: string; path: string; }[] = [
@@ -14,8 +16,12 @@ const options: { label: string; path: string; }[] = [
 
 
 const Header = () => {
-
+    const { products } = useAppSelector(state => state.cart);
     const ref = useRef<HTMLElement>(null);
+
+    const handleCart = () => {
+        uiStateService.setSubject(true);
+    };
 
     return (
         <Appbar>
@@ -38,8 +44,13 @@ const Header = () => {
                 </Menu>
 
                 <div className='header__buttons'>
-                    <IconButton className='header__icon'>
-                        <BiCart />
+                    <IconButton
+                        onClick={handleCart}
+                        className='header__icon'
+                    >
+                        <Badge badgeContent={products.length}>
+                            <BiCart />
+                        </Badge>
                     </IconButton>
                     <Link to='/auth/login'>
                         <Button size='small'>

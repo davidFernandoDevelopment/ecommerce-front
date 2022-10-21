@@ -1,32 +1,51 @@
+import { useEffect, useRef } from 'react';
+
 import './cart.scss';
 import { CartProduct } from '../../ui';
 import { HeaderAction } from '../../../ecommerce';
 import { Button } from '../../../../bemit/components';
 import { Container } from '../../../../bemit/objects';
+import { uiStateService } from '../../../../services';
+import { useAppSelector } from '../../../../store';
+
 
 const Cart = () => {
+    const cartRef = useRef<HTMLDivElement>(null);
+    const { products, total } = useAppSelector(state => state.cart);
+
+    useEffect(() => {
+        uiStateService
+            .getSubject()
+            .subscribe(data => {
+                data
+                    ? cartRef.current?.classList.add('is-open')
+                    : cartRef.current?.classList.remove('is-open');
+            });
+    }, []);
+
+
+    const closeCart = () => {
+        uiStateService.setSubject(false);
+    };
+
     return (
-        <div className='cart'>
-            <HeaderAction className='cart__header' />
+        <div ref={cartRef} className='cart'>
+            <HeaderAction
+                fnAction={closeCart}
+                className='cart__header'
+            />
             <Container className='cart__container'>
                 <div className="cart__products">
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
+                    {
+                        products.map((p) => (
+                            <CartProduct key={p.productId} {...p} />
+                        ))
+                    }
                 </div>
                 <div className="cart__total">
                     <div className="cart__abstract">
-                        <p className="cart__quantity">3 Articulos</p>
-                        <p className="cart__price">S/ 500.00</p>
+                        <p className="cart__quantity">{products.length} Articulos</p>
+                        <p className="cart__price">S/ {total}</p>
                     </div>
                     <Button fullWidth>
                         Pagar

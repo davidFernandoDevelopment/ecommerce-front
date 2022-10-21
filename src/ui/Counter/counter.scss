@@ -11,6 +11,10 @@
     font-size: inherit;
     border-radius: 0.25em;
     background-color: var(--button-color);
+
+    &--disabled {
+      background-color: var(--text-color-light);
+    }
   }
 
   &__number {

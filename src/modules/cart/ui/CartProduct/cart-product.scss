@@ -3,7 +3,7 @@
 
   //* Nodos propios del componente CartProduct.
   &__title {
-    font-size: var(--h3-font-size);
+    font-size: var(--h4-font-size);
   }
 
   &__price {
@@ -23,8 +23,8 @@
   }
 
   &__trash {
-    right: 0.75rem;
-    top: 0.75rem;
+    top: 0;
+    right: 0;
     position: absolute;
     color: rgb(153, 22, 22);
   }
@@ -38,6 +38,7 @@
 
   //* Referencia al componente Card.
   &-card.c-card {
+    gap: 1rem;
     display: flex;
     padding: 0.75rem;
     flex-direction: row;
@@ -58,8 +59,11 @@
     //* Referencia al componente CardContent (children de Card).
     .c-card-content {
       flex: 1;
-      display: flex;
       gap: 0.5em;
+      display: flex;
+      padding: 0;
+      padding: 0.25rem;
+      padding-right: 2em;
       flex-direction: column;
     }
   }

@@ -1,0 +1,1 @@
+export type StateCounter = 'plus' | 'minus';
