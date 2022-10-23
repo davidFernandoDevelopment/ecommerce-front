@@ -1,11 +1,11 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 import './header.scss';
-import { Appbar, Badge, Button, IconButton, Menu, MenuItem, MenuList, Toolbar } from '../../../../bemit/components';
 import { uiStateService } from '../../../../services';
 import { useAppSelector } from '../../../../store/useStore';
+import { Appbar, Badge, Button, IconButton, Menu, MenuItem, MenuList, Toolbar } from '../../../../bemit/components';
 
 
 const options: { label: string; path: string; }[] = [
@@ -13,7 +13,6 @@ const options: { label: string; path: string; }[] = [
     { label: 'Destacados', path: '/featureds' },
     { label: 'Productos', path: '/products' }
 ];
-
 
 const Header = () => {
     const { products } = useAppSelector(state => state.cart);

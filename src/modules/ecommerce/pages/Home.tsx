@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import './home.scss';
 import { useProductStore } from '../../product';
 import { Section } from '../../../bemit/objects';
-import { BottomBarEcco, CardProduct, MainProduct, NewsLetter } from '../ui';
+import { CardProduct, MainProduct, NewsLetter } from '../ui';
 
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className='home'>
+        <div className='home animate__animated animate__fadeIn'>
             <MainProduct />
             <Section title='Ofertas de la semana'>
                 {
@@ -50,7 +50,6 @@ const Home = () => {
                 }
             </Section>
             <NewsLetter />
-            <BottomBarEcco />
         </div>
     );
 };

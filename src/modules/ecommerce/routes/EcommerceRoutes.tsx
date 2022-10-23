@@ -2,7 +2,10 @@ import { Route } from 'react-router-dom';
 
 import { Cart } from '../../cart';
 import { AuthRoutes } from '../../auth';
+import { Favorites } from '../../product';
+import { BottomBarEcco } from '../../../ui';
 import { Header, Home, Content } from '../';
+import { Categories } from '../../category';
 import { RoutesNotWithFound } from '../../../utilities';
 
 
@@ -15,9 +18,12 @@ const EcommerceRoutes = () => {
             <Content>
                 <RoutesNotWithFound path=''>
                     <Route index element={<Home />} />
+                    <Route path='categories' element={<Categories />} />
+                    <Route path='favorites' element={<Favorites />} />
                     <Route path='auth/*' element={<AuthRoutes />} />
                 </RoutesNotWithFound>
             </Content>
+            <BottomBarEcco />
         </>
     );
 };

@@ -15,17 +15,18 @@
   }
 
   //* Referencia al componente Card.
-  &-card {
+  $c-c: '.c-card';
+  &-card#{$c-c} {
     $b: &;
     gap: 0.75rem;
     padding: 0.5rem;
     position: relative;
 
-    .c-card-image {
+    #{$c-c}-image {
       margin-top: 2.25rem;
     }
 
-    .c-card-content {
+    #{$c-c}-content {
       flex: 1;
       padding: 0.5rem;
       font-size: 0.75rem;
@@ -38,12 +39,14 @@
   }
 
   //* Referencia al component IconAction.
+  $c-ia: '.c-icon-action';
   &__icon-action {
-    display: flex;
-    position: absolute;
-    padding: 0.25rem;
-
-    &--add {
+    &#{$c-ia} {
+      display: flex;
+      position: absolute;
+      padding: 0.25rem;
+    }
+    &--add#{$c-ia} {
       right: 0;
       bottom: 0;
       color: white;
@@ -52,8 +55,7 @@
       border-bottom-right-radius: 10px;
       background-color: var(--title-color);
     }
-
-    &--heart {
+    &--heart#{$c-ia} {
       top: 0.25rem;
       right: 0.25rem;
       color: red;

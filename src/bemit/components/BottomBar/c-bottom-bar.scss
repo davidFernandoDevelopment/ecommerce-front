@@ -96,7 +96,7 @@
       height: var(--size);
       background-color: transparent;
       border-top-right-radius: var(--size);
-      box-shadow: 0px calc(var(--size) / 2 * -1) 0px 0 var(--body-color);
+      box-shadow: 0px calc(var(--size) / 2 * -1) var(--body-color);
     }
 
     &::after {
@@ -109,7 +109,7 @@
       height: var(--size);
       background-color: transparent;
       border-top-left-radius: var(--size);
-      box-shadow: 0px calc(var(--size) / 2 * -1) 0 0 var(--body-color);
+      box-shadow: 0px calc(var(--size) / 2 * -1) var(--body-color);
     }
   }
 }

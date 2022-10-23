@@ -1,0 +1,9 @@
+.ecco {
+  &-bottom-bar {
+    transition: all 0.5s;
+
+    &--hidden {
+      bottom: -100%;
+    }
+  }
+}
