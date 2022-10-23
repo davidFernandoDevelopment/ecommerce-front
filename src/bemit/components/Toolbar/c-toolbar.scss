@@ -1,4 +1,4 @@
-@use '../../tools' as mx;
+@use '../../tools/mixins/breakpoints.scss' as bp;
 
 .c-toolbar {
   height: var(--header-height);
@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
 
-  @include mx.from(lg) {
+  @include bp.from(lg) {
     justify-content: initial;
     column-gap: 3rem;
   }

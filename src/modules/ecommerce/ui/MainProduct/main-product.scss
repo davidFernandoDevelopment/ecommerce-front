@@ -1,4 +1,4 @@
-@use '../../../../bemit/tools' as mx;
+@use '../../../../bemit/tools/mixins/breakpoints.scss' as bp;
 
 .main-product {
   padding: 1rem;
@@ -12,11 +12,11 @@
   gap: 1.5rem;
   grid-template-columns: 3fr 2fr;
 
-  @include mx.from(lg) {
+  @include bp.from(lg) {
     padding: 2rem;
   }
 
-  @include mx.from(xl) {
+  @include bp.from(xl) {
     gap: 2rem;
     padding: 3rem;
   }
@@ -51,7 +51,7 @@
       margin-bottom: 1rem;
       font-size: var(--h2-font-size);
 
-      @include mx.from(lg) {
+      @include bp.from(lg) {
         font-size: var(--h1-font-size);
       }
     }
@@ -62,11 +62,11 @@
       font-size: var(--normal-font-size);
       line-height: 1.6;
 
-      @include mx.from(md) {
+      @include bp.from(md) {
         display: block;
         font-size: var(--normal-font-size);
       }
-      @include mx.from(lg) {
+      @include bp.from(lg) {
         font-size: var(--h3-font-size);
       }
     }

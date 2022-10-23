@@ -1,4 +1,4 @@
-@use '../../../../bemit/tools/mixins.scss' as mx;
+@use '../../../../bemit/tools/mixins/breakpoints.scss' as bp;
 
 .news-letter {
   padding: 4rem 0 1rem;
@@ -11,7 +11,7 @@
     text-align: center;
     row-gap: 2.5rem;
 
-    @include mx.from(lg) {
+    @include bp.from(lg) {
       grid-template-columns: repeat(2, 1fr);
       align-items: center;
       column-gap: 2rem;

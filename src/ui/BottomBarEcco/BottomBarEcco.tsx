@@ -14,7 +14,7 @@ const values = [
     { icon: <AiOutlineHeart />, path: 'favorites', text: 'Favoritos', index: 3 },
     { icon: <FiSettings />, path: '', text: 'Settings', index: 4 },
 ];
-const withoutBottomBar = ['/categories'];
+const withoutBottomBar = ['/products'];
 
 const BottomBarEcco = () => {
     const p = 'ecco';

@@ -1,4 +1,4 @@
-@use '../settings' as s;
+@use '../../settings' as s;
 
 @mixin from($bp) {
   @if map-has-key(s.$breakpoints, $bp) {
