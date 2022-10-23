@@ -3,7 +3,7 @@
   $b: &;
 
   position: fixed;
-  z-index: 90;
+  z-index: var(--z-app-bar);
   bottom: 0;
   left: 0;
   background-color: var(--first-color);
@@ -30,7 +30,7 @@
     flex: 1;
     width: var(--height);
     height: var(--height);
-    z-index: 1;
+    z-index: var(--z-normal);
   }
 
   &__link {

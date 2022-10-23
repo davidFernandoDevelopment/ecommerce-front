@@ -2,6 +2,7 @@
   height: auto;
   overflow: hidden;
   position: relative;
+  $z-index: 1;
 
   &::before {
     content: '';
@@ -10,7 +11,7 @@
     display: block;
     padding-bottom: 56.25%;
 
-    z-index: 1;
+    z-index: $z-index;
     position: relative;
   }
 
@@ -34,7 +35,7 @@
 
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: $z-index + 1;
     position: absolute;
   }
 }

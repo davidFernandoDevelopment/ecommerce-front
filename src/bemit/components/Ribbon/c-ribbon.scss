@@ -30,7 +30,7 @@
   &::before,
   &::after {
     content: '';
-    z-index: -1;
+    z-index: var(--z-negative);
     display: block;
     position: absolute;
     border: 7px solid var(--first-color-alt);

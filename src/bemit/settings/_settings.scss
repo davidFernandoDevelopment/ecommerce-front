@@ -57,8 +57,18 @@
   --mb-3: 3rem;
 
   /* z-index */
-  --z-tooltip: 10;
-  --z-fixed: 100;
+  --z-negative: -1;
+  //* MODO BÁSICO.
+  --z-normal: 10;
+  //* PARA CARDS Y PAPERS.
+  --z-paper: 50;
+  //* PARA HEADER Y BOTTOMBAR.
+  --z-app-bar: 60;
+  //* PARA PAGINAS DONDE NO SE REQUIERAN APPBAR.
+  --z-page: 70;
+  --z-drawer: 80;
+  --z-modal: 90;
+  --z-tooltip: 100;
 }
 
 @media screen and (min-width: 968px) {
