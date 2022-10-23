@@ -33,6 +33,7 @@ const Cart = () => {
             <HeaderAction
                 fnAction={closeCart}
                 className='cart__header'
+                title='Carrito de compras'
             />
             <Container className='cart__container'>
                 <div className="cart__products">

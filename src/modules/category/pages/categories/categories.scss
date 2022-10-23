@@ -1,3 +1,4 @@
 .categories {
-    
+  position: relative;
+  z-index: calc(var(--z-app-bar) + 1);
 }

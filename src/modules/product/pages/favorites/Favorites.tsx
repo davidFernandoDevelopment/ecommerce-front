@@ -1,11 +1,12 @@
 import './favorites.scss';
+import { Container } from '../../../../bemit/objects';
 
 
 const Favorites = () => {
     return (
-        <div className='favorites animate__animated animate__fadeIn'>
+        <Container className='favorites animate__animated animate__fadeIn'>
             Favorites
-        </div>
+        </Container>
     );
 };
 export default Favorites;

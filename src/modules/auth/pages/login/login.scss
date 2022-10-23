@@ -1,4 +1,8 @@
+@use '../../../../bemit/tools/mixins/layout.scss' as l;
+
 .login {
+  @include l.header-space-layout;
+
   &__form {
     display: flex;
     flex-direction: column;

@@ -1,4 +1,3 @@
-import { Container } from '../../../../bemit/objects';
 import './content.scss';
 
 interface Props {
@@ -8,9 +7,7 @@ interface Props {
 const Content = ({ children }: Props) => {
     return (
         <main className='content'>
-            <Container>
-                {children}
-            </Container>
+            {children}
         </main>
     );
 };

@@ -1,2 +1,5 @@
+@use '../../../../bemit/tools/mixins/layout.scss' as l;
+
 .favorites {
+  @include l.header-space-layout;
 }
