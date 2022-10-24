@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import { useState, useEffect } from 'react';
 
 import './c-icon-action.scss';
 import { IconButton, StateIconAction } from '..';

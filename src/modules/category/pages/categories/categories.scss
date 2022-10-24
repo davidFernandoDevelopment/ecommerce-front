@@ -1,4 +1,8 @@
 .categories {
   position: relative;
   z-index: calc(var(--z-app-bar) + 1);
+
+  &__content {
+    margin-top: 1.5rem;
+  }
 }

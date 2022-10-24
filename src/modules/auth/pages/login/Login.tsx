@@ -38,7 +38,7 @@ const Login = () => {
 
 
     return (
-        <div className='login u-mt o-container'>
+        <div className='login u-mt o-container animate__animated animate__fadeIn'>
             <form className="login__form" onSubmit={handleSubmit}>
                 <TextField
                     onBlur={onBlurChange}
