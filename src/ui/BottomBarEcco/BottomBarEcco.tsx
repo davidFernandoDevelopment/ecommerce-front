@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { FiSettings } from 'react-icons/fi';
 import { useLocation } from 'react-router-dom';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai';
 import { BiHomeAlt, BiCategory } from 'react-icons/bi';
 
 import './bottom-bar-ecco.scss';
@@ -12,7 +12,7 @@ const values = [
     { icon: <BiHomeAlt />, path: '', text: 'Inicio', index: 1 },
     { icon: <BiCategory />, path: 'categories', text: 'categorias', index: 2 },
     { icon: <AiOutlineHeart />, path: 'favorites', text: 'Favoritos', index: 3 },
-    { icon: <FiSettings />, path: '', text: 'Settings', index: 4 },
+    { icon: <AiOutlineUser />, path: 'auth', text: 'Perfil', index: 4 },
 ];
 const withoutBottomBar = ['/products'];
 
