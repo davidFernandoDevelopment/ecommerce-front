@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { FiSettings } from 'react-icons/fi';
 import { useLocation } from 'react-router-dom';
-import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai';
 import { BiHomeAlt, BiCategory } from 'react-icons/bi';
+import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai';
 
 import './bottom-bar-ecco.scss';
 import { BottomBar } from '../../bemit/components';
