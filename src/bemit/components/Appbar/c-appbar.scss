@@ -2,7 +2,7 @@
   width: 100%;
 
   z-index: var(--z-app-bar);
-  transition: 0.3s;
+  transition: var(--transition);
 
   background-color: white;
 

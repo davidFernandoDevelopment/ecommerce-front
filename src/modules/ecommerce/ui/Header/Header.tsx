@@ -1,11 +1,12 @@
 import { useRef } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import { MdOutlineDarkMode } from 'react-icons/md';
 
 import './header.scss';
 import { uiStateService } from '../../../../services';
 import { useAppSelector } from '../../../../store/useStore';
-import { Appbar, Badge, Button, IconButton, Menu, MenuItem, MenuList, Toolbar } from '../../../../bemit/components';
+import { Appbar, Badge, IconButton, Menu, MenuItem, MenuList, Search, Toolbar } from '../../../../bemit/components';
 
 
 const options: { label: string; path: string; }[] = [
@@ -15,16 +16,27 @@ const options: { label: string; path: string; }[] = [
 ];
 
 const Header = () => {
-    const { products } = useAppSelector(state => state.cart);
     const ref = useRef<HTMLElement>(null);
+    const refHeader = useRef<HTMLHeadElement>(null);
+    const { products } = useAppSelector(state => state.cart);
 
     const handleCart = () => {
         uiStateService.setSubject(true);
     };
 
+    const handleSearch = (value: string) => {
+
+    };
+
+    const handleOpenSearch = (open: boolean) => {
+        open
+            ? refHeader.current?.classList.add('is-open-search')
+            : refHeader.current?.classList.remove('is-open-search');
+    };
+
     return (
-        <Appbar>
-            <Toolbar>
+        <Appbar ref={refHeader} className='header'>
+            <Toolbar className='header_container'>
                 <Link to='/' className='header__logo'>
                     <i className="uil uil-watch-alt header__logo-icon"></i>
                     Tienda Sánchez
@@ -51,12 +63,16 @@ const Header = () => {
                             <BiCart />
                         </Badge>
                     </IconButton>
-                    <Link to='/auth/login'>
-                        <Button size='small'>
-                            Login
-                        </Button>
-                    </Link>
+                    <IconButton className='header__icon'>
+                        <MdOutlineDarkMode />
+                    </IconButton>
                 </div>
+                <Search
+                    onValue={handleSearch}
+                    onOpen={handleOpenSearch}
+                    className='header__search'
+                />
+                <div className='header__results'></div>
             </Toolbar>
         </Appbar >
     );

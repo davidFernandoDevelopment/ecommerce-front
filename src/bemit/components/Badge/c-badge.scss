@@ -21,7 +21,7 @@
     color: white;
     background-color: red;
 
-    transition: all 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    transition: transform var(--transition-scale);
 
     &--changes {
       transform: translate(50%, -50%) scale(1.2);

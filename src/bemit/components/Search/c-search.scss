@@ -1,45 +1,101 @@
 .c-search {
   $b: &;
-  overflow: hidden;
+  --z-index: 1;
+  --size-width: 2em;
+  --size-height: 2em;
+  --font-size-icon: 0.85em;
+  --font-size-input: 0.65em;
+
+  font-size: 1.75rem;
+
   position: relative;
 
-  display: flex;
-  border-radius: 10px;
-  justify-content: space-between;
+  overflow: hidden;
+  width: var(--size-width);
+  height: var(--size-height);
+  border-radius: var(--size-width);
 
-  background-color: var(--container-color);
+  background-color: white;
+  box-shadow: 0 8px 32px rgb(26 26 26 / 10%);
 
-  transition: 0.5s;
-  box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+  transition: width var(--transition);
 
-  &__icon,
-  &__close {
-    position: relative;
-    width: 60px;
-    height: 60px;
+  z-index: 2;
+
+  &.is-active {
+    width: 100%;
+  }
+
+  //* Classes comunes de iconos.
+  &__icon {
+    position: absolute;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
+
+    cursor: pointer;
+    border-radius: 50%;
+    width: var(--size-width);
+    height: var(--size-height);
+
+    color: var(--title-color);
+
+    > * {
+      font-size: var(--font-size-icon);
+    }
+
+    &--search {
+      top: 0;
+      left: 0;
+      z-index: var(--z-index);
+
+      background-color: #fff;
+    }
+
+    &--close {
+      top: 0;
+      right: 0;
+      transform: scale(0);
+
+      transition: transform var(--transition-scale);
+
+      &.is-show {
+        transform: scale(1);
+      }
+    }
   }
 
+  //* Contenedor del input.
   &__wrapper {
-    flex: 1;
+    position: relative;
+    left: var(--size-width);
+
+    height: 100%;
+    width: calc(100% - calc(var(--size-width) * 2));
   }
+
+  //* Nodo del input.
   &__input {
     width: 100%;
     height: 100%;
-    font-size: 1.15em;
-  }
 
-  &__close {
-    cursor: pointer;
-    scale: 0;
-    transition: 0.5s;
+    font-size: var(--font-size-input);
 
-    #{$b}.is-active & {
-      scale: 1;
-      transition-delay: 0.5s;
+    &::placeholder {
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      opacity: 0;
+      transition: opacity var(--transition);
+
+      #{$b}.is-active & {
+        opacity: 1;
+      }
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
     }
   }
 }

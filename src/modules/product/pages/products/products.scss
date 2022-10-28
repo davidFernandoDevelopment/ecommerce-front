@@ -1,3 +1,5 @@
+@use '../../../../bemit/tools/mixins/layout.scss' as l;
+
 .products {
-    
+  @include l.header-space-layout;
 }

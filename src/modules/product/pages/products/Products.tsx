@@ -1,11 +1,13 @@
-import { BottomBarEcco } from '../../../../ui';
+import { Container } from '../../../../bemit/objects';
 import './products.scss';
 
 
 const Products = () => {
     return (
         <div className='products animate__animated animate__fadeIn'>
-            Products
+            <Container>
+                Products
+            </Container>
         </div>
     );
 };

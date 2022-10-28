@@ -1,9 +1,14 @@
 .ecco {
+  //* Referencia al componente BottomBar.
+  $b-b: '.c-bottom-bar';
   &-bottom-bar {
-    transition: all 0.5s;
-
     &--hidden {
       bottom: -100%;
+    }
+
+    &#{$b-b} {
+      transition: bottom var(--transition);
+      z-index: calc(var(--z-app-bar) + 2);
     }
   }
 }

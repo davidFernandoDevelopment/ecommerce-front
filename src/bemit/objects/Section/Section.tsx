@@ -2,7 +2,7 @@ import './o-section.scss';
 
 
 interface Props {
-    title: string;
+    title?: string;
     children: React.ReactNode;
 }
 
@@ -10,7 +10,12 @@ interface Props {
 const Section = ({ children, title }: Props) => {
     return (
         <section className='o-section'>
-            <h2 className='o-section__title'>{title}</h2>
+            {
+                title &&
+                <h2 className='o-section__title'>
+                    {title}
+                </h2>
+            }
             <div className='o-section__content'>
                 {children}
             </div>

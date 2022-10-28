@@ -1,7 +1,16 @@
 .header {
+  $b: &;
+  &.is-open-search {
+    z-index: calc(var(--z-app-bar) + 4);
+  }
+
+  &__container {
+    position: relative;
+  }
 
   &__logo {
     color: var(--title-color);
+    white-space: nowrap;
     text-transform: uppercase;
     font-weight: var(--font-semi-bold);
     letter-spacing: 1.1px;
@@ -15,12 +24,53 @@
   }
 
   &__buttons {
-    gap: 1.5rem;
+    gap: 1rem;
     display: flex;
     align-items: center;
+
+    margin-right: 56px;
   }
 
-  &__icon {
-    font-size: 1.5rem;
+  //* Referencia al componente IconButton.
+  $i-b: '.c-icon-button';
+  &__icon#{$i-b} {
+    padding: 0.25em;
+    font-size: 1.5em;
+  }
+
+  //* Referencia al componente Search.
+  $c-s: '.c-search';
+  &__search#{$c-s} {
+    font-size: 1.25rem;
+    right: 24px;
+    position: absolute;
+    transition: width var(--transition), font-size var(--transition);
+
+    &.is-active {
+      width: calc(100% - 48px);
+      font-size: 1.5rem;
+    }
+
+    #{$c-s}__icon {
+      > * {
+        font-size: 1.5rem;
+        transition: font-size var(--transition);
+      }
+    }
+  }
+
+  &__results {
+    inset: 0;
+    top: var(--header-height);
+    position: fixed;
+    width: 100vw;
+    background-color: white;
+
+    height: 0;
+    transition: height var(--transition);
+
+    #{$b}.is-open-search & {
+      height: 100vh;
+    }
   }
 }

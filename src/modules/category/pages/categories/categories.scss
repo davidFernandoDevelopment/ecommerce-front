@@ -1,6 +1,12 @@
 .categories {
   position: relative;
+  background-color: var(--body-color);
   z-index: calc(var(--z-app-bar) + 1);
+
+  &__header {
+    position: sticky;
+    top: 0;
+  }
 
   &__content {
     margin-top: 1.5rem;

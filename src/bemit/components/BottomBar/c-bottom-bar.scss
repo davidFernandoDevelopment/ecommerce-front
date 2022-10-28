@@ -1,6 +1,6 @@
 .c-bottom-bar {
-  --height: 56px;
   $b: &;
+  --height: 56px;
 
   position: fixed;
   z-index: var(--z-app-bar);
@@ -48,8 +48,8 @@
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    transition: 0.5s;
     color: var(--title-color);
+    transition: transform var(--transition), color var(--transition);
 
     #{$b}__item.is-active & {
       color: white;
@@ -63,9 +63,10 @@
     font-weight: 400;
     font-size: 1em;
     letter-spacing: 0.05em;
-    transition: 0.5s;
+
     opacity: 0;
     transform: translateY(0);
+    transition: transform var(--transition), opacity var(--transition);
 
     #{$b}__item.is-active & {
       transform: translateY(calc(var(--height) / 4));
@@ -82,7 +83,7 @@
     background-color: var(--title-color);
     border-radius: 50%;
     border: 6px solid var(--body-color);
-    transition: 0.5s;
+    transition: left var(--transition);
 
     --size: calc(var(--height) / 3);
 

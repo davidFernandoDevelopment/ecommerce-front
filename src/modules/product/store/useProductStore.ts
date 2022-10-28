@@ -1,6 +1,6 @@
 import { api } from '../../../interceptor';
-import { useAppDispatch, useAppSelector } from '../../../store';
 import { setProducts } from './productSlice';
+import { useAppDispatch, useAppSelector } from '../../../store';
 
 export const useProductStore = () => {
 	const dispatch = useAppDispatch();

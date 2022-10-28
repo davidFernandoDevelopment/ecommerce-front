@@ -9,7 +9,8 @@
     padding-right: 2.5em;
     border-radius: 5px;
     border: 1px solid var(--title-color);
-    transition: all 0.3s ease-in-out;
+
+    transition: border-color var(--transition);
 
     &:focus {
       border-color: #00dfc4;
@@ -26,7 +27,10 @@
     padding: 1em;
     pointer-events: none;
     border-color: transparent;
-    transition: all 0.3s ease-in-out;
+
+    transition: transform var(--transition-fast), padding var(--transition-fast),
+      border var(--transition-fast), background-color var(--transition-fast),
+      font-size var(--transition-fast), letter-spacing var(--transition-fast);
 
     #{$b}.is-open &,
     #{$b}__input:focus ~ & {
@@ -67,7 +71,7 @@
     transform: translateY(calc(-100% - 0.5em));
     opacity: 0;
 
-    transition: 0.3s;
+    transition: transform var(--transition-fast), opacity var(--transition);
 
     #{$b}.has-error & {
       transform: translateY(0);

@@ -69,6 +69,12 @@
   --z-drawer: 80;
   --z-modal: 90;
   --z-tooltip: 100;
+
+  //* TRANSITIONS.
+  --transition: 0.5s ease;
+  --transition-fast: 0.3s ease;
+  --transition-scale: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  --transition-drawer: 350ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
 @media screen and (min-width: 968px) {

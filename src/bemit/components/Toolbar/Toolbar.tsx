@@ -1,4 +1,6 @@
+import React from 'react';
 import classNames from 'classnames';
+
 import './c-toolbar.scss';
 
 interface Props {
@@ -6,18 +8,19 @@ interface Props {
     children: React.ReactNode;
 }
 
-const Toolbar = ({ children, className }: Props) => {
+const Toolbar = React.forwardRef(
+    ({ children, className }: Props, ref: React.ForwardedRef<HTMLDivElement>) => {
 
-    const classes = classNames([
-        className,
-        'c-toolbar',
-        'o-container',
-    ]);
+        const classes = classNames([
+            className,
+            'c-toolbar',
+            'o-container',
+        ]);
 
-    return (
-        <div className={classes}>
-            {children}
-        </div>
-    );
-};
+        return (
+            <div ref={ref} className={classes}>
+                {children}
+            </div>
+        );
+    });
 export default Toolbar;
