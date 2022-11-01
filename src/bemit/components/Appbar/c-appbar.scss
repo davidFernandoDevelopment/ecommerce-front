@@ -4,7 +4,7 @@
   z-index: var(--z-app-bar);
   transition: var(--transition);
 
-  background-color: white;
+  background-color: var(--container-color);
 
   &--fixed {
     top: 0;

@@ -8,7 +8,9 @@
     padding: 1em;
     padding-right: 2.5em;
     border-radius: 5px;
+    color: var(--title-color);
     border: 1px solid var(--title-color);
+    background-color: var(--container-color);
 
     transition: border-color var(--transition);
 
@@ -38,7 +40,7 @@
       font-size: 0.65em;
       padding: 0 0.625em;
       letter-spacing: 0.2em;
-      background-color: white;
+      background-color: var(--container-color);
       border-left: 1px solid;
       border-right: 1px solid;
     }

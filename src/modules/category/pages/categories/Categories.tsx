@@ -25,6 +25,8 @@ const Categories = () => {
 
 
     const searchCategory = (category: string) => {
+        if (!category) return;
+        console.log({ category });
         syncSearchCategory(category);
     };
 
@@ -34,7 +36,9 @@ const Categories = () => {
             <Container className='categories__content'>
                 <Search
                     keepOpen
+                    debounce={800}
                     onValue={searchCategory}
+                    className='categories__search'
                     title='Que producto desea buscar'
                 />
                 <div>

@@ -1,12 +1,20 @@
+import classNames from 'classnames';
 import './c-menu-item.scss';
 
 interface Props {
+    className?: string;
     children: React.ReactNode;
 }
 
-const MenuItem = ({ children }: Props) => {
+const MenuItem = ({ children, className }: Props) => {
+
+    const classes = classNames([
+        className,
+        'c-menu-item'
+    ]);
+
     return (
-        <div className='c-menu-item'>
+        <div className={classes}>
             {children}
         </div>
     );

@@ -1,12 +1,14 @@
 import { useRef } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { MdOutlineDarkMode } from 'react-icons/md';
+import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
 import './header.scss';
+import { Container } from '../../../../bemit/objects';
 import { uiStateService } from '../../../../services';
 import { useAppSelector } from '../../../../store/useStore';
 import { Appbar, Badge, IconButton, Menu, MenuItem, MenuList, Search, Toolbar } from '../../../../bemit/components';
+
 
 
 const options: { label: string; path: string; }[] = [
@@ -14,18 +16,24 @@ const options: { label: string; path: string; }[] = [
     { label: 'Destacados', path: '/featureds' },
     { label: 'Productos', path: '/products' }
 ];
+const buscados = ['Lacteos', 'Menestras', 'Azucar', 'Detergentes', 'Lejias', 'Conservas', 'Arroces', 'Aceites', 'Limpieza'];
+
 
 const Header = () => {
     const ref = useRef<HTMLElement>(null);
     const refHeader = useRef<HTMLHeadElement>(null);
     const { products } = useAppSelector(state => state.cart);
 
+
     const handleCart = () => {
         uiStateService.setSubject(true);
     };
 
-    const handleSearch = (value: string) => {
+    const handleTheme = () => document.body.classList.toggle('dark-theme');
 
+    const handleSearch = (value: string) => {
+        if (!value) return;
+        console.log(value);
     };
 
     const handleOpenSearch = (open: boolean) => {
@@ -63,7 +71,11 @@ const Header = () => {
                             <BiCart />
                         </Badge>
                     </IconButton>
-                    <IconButton className='header__icon'>
+                    <IconButton
+                        onClick={handleTheme}
+                        className='header__icon'
+                    >
+                        <MdOutlineLightMode />
                         <MdOutlineDarkMode />
                     </IconButton>
                 </div>
@@ -71,11 +83,23 @@ const Header = () => {
                     onValue={handleSearch}
                     onOpen={handleOpenSearch}
                     className='header__search'
+                    debounce={800}
                 />
-                <div className='header__results'></div>
+                <div className='header-results'>
+                    <Container className='header-results__container'>
+                        <h3 className='header-results__title'>Términos más buscados</h3>
+                        <MenuList className='header-results__list'>
+                            {
+                                buscados.map((kw, i) => (
+                                    <MenuItem key={i}>{kw}</MenuItem>
+                                ))
+                            }
+                        </MenuList>
+                    </Container>
+                </div>
             </Toolbar>
         </Appbar >
     );
 };
 
-export default Header;;;
+export default Header;

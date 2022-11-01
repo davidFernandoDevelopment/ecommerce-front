@@ -44,7 +44,6 @@ const Login = () => {
                     onBlur={onBlurChange}
                     onChange={onInputChange}
                     name='email'
-                    type="email"
                     label="Email"
                     autoComplete='off'
                     error={touched.email && !!emailValid}

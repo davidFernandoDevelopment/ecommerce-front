@@ -10,7 +10,10 @@ body {
   background-color: var(--body-color);
   color: var(--text-color);
 
-  transition: var(--transition);
+  &,
+  > * {
+    transition: background-color var(--transition);
+  }
 }
 
 h1,
@@ -47,6 +50,12 @@ button {
   font-size: inherit;
   border: none;
   outline: none;
+}
+
+input {
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
 }
 
 button {

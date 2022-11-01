@@ -1,15 +1,16 @@
 import classnames from 'classnames';
-import queryString from 'query-string';
 import { MdSearch } from 'react-icons/md';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineArrowLeft } from 'react-icons/ai';
-import { ChangeEvent, FC, FormEvent, useRef, useState, useLayoutEffect } from 'react';
+import { ChangeEvent, FC, FormEvent, useRef, useState } from 'react';
 
 import './c-search.scss';
+import { useDebounce, useQuery } from '../../../hooks';
 
 
 interface Props {
     title?: string;
+    debounce?: number;
     keepOpen?: boolean;
     className?: string;
     onOpen?: (open: boolean) => void;
@@ -23,21 +24,19 @@ const Search: FC<Props> = ({
     onValue,
     className,
     keepOpen = false,
+    debounce = 0,
 }) => {
     const navigate = useNavigate();
-    const location = useLocation();
     const [value, setValue] = useState('');
     const [open, setOpen] = useState(false);
+    const emit = useDebounce(debounce, onValue);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    useLayoutEffect(() => {
-        let { q = '' } = queryString.parse(location.search) as { q: string; };
-        if (q) setValue(q);
-    }, [location]);
+    useQuery(setValue);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        emit(e.target.value);
         setValue(e.target.value);
-        onValue(e.target.value);
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -61,7 +60,7 @@ const Search: FC<Props> = ({
     };
 
     const clear = () => {
-        onValue('');
+        emit('');
         setValue('');
         inputRef.current?.focus();
     };

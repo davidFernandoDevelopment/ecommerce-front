@@ -11,7 +11,7 @@ const NewsLetter = () => {
                         Suscribete a nuestras <br /> Noticias
                     </h2>
                     <p className="news-letter__description">
-                        Suscribete a nuestras noticias y recibe las 
+                        Suscribete a nuestras noticias y recibe las
                         mejores ofertas y promociones cada semana.
 
                     </p>
@@ -19,7 +19,6 @@ const NewsLetter = () => {
                 <form className="news-letter__form">
                     <TextField
                         label='Email'
-                        type="email"
                     />
                     <Button>
                         Suscribete

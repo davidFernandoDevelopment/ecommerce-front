@@ -29,7 +29,7 @@ const TextField = ({
         <div className={`c-text-field ${error ? 'has-error' : ''} ${ref.current?.value.length ? 'is-open' : ''}`}>
             <input
                 ref={ref}
-                type={password ? (showPassword ? "text" : "password") : "text"}
+                type={password ? (showPassword ? "search" : "password") : "search"}
                 className="c-text-field__input"
                 {...rest}
             />

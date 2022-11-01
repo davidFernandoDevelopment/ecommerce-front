@@ -3,7 +3,7 @@
   padding: 0.5em;
   padding-right: 1em;
 
-  color: #fff;
+  color: var(--container-color);
   font-size: 0.75rem;
   font-weight: var(--font-semi-bold);
 
@@ -29,7 +29,7 @@
 
     background-image: radial-gradient(
       0.75em at 50% 50%,
-      white 50%,
+      var(--container-color) 50%,
       var(--first-color) 50%
     );
   }

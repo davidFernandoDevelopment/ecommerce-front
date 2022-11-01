@@ -52,7 +52,7 @@
     transition: transform var(--transition), color var(--transition);
 
     #{$b}__item.is-active & {
-      color: white;
+      color: var(--container-color);
       transform: translateY(calc(var(--height) / 2 * -1));
     }
   }

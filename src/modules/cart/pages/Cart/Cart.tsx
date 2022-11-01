@@ -17,9 +17,13 @@ const Cart = () => {
         uiStateService
             .getSubject()
             .subscribe(data => {
-                data
-                    ? cartRef.current?.classList.add('is-open')
-                    : cartRef.current?.classList.remove('is-open');
+                if (data) {
+                    cartRef.current?.classList.add('is-open');
+                    document.body.style.overflow = 'hidden';
+                    return;
+                }
+                document.body.style.overflow = 'auto';
+                cartRef.current?.classList.remove('is-open');
             });
     }, []);
 

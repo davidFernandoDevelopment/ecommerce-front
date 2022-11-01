@@ -1,6 +1,6 @@
 .c-button {
   display: inline-block;
-  color: #fff;
+  color: var(--container-color);
   background-color: var(--button-color);
   font-weight: var(--font-medium);
   text-align: center;

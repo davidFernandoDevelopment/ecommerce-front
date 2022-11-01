@@ -11,4 +11,15 @@
   &__content {
     margin-top: 1.5rem;
   }
+
+  //* Referencia al componente Seacrh.
+  $c-s: '.c-search';
+  &__search#{$c-s} {
+    font-size: 1.5rem;
+
+    &,
+    #{$c-s}__input {
+      background-color: var(--container-color);
+    }
+  }
 }
