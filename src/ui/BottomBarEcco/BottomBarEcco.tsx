@@ -21,10 +21,10 @@ const BottomBarEcco = () => {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        console.log({
-            withoutBottomBar,
-            location: location.pathname
-        });
+        // console.log({
+        //     withoutBottomBar,
+        //     location: location.pathname
+        // });
         withoutBottomBar.includes(location.pathname)
             ? ref.current?.classList.add(`${p}-bottom-bar--hidden`)
             : ref.current?.classList.remove(`${p}-bottom-bar--hidden`);

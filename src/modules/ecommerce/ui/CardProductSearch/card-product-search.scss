@@ -1,0 +1,38 @@
+.card-product-search {
+  &__title {
+    font-size: var(--h4-font-size);
+  }
+
+  &__price {
+    color: var(--first-color-alt);
+    font-size: var(--h3-font-size);
+  }
+
+  &__button {
+    align-self: flex-end;
+  }
+
+  //* Referencia al componente Card.
+  $c-c: '.c-card';
+  &#{$c-c} {
+    padding: 0.5rem;
+    flex-direction: row;
+
+    #{$c-c}-image {
+      width: 60px;
+
+      &__img {
+        object-fit: contain;
+      }
+    }
+
+    #{$c-c}-content {
+      flex: 1;
+      gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+
+      padding: 0.5rem;
+    }
+  }
+}

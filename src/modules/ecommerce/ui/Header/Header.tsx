@@ -1,9 +1,11 @@
-import { useRef } from 'react';
 import { BiCart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
 import './header.scss';
+import { CardProductSearch, NotFound, Searching } from '../';
+import { Product } from '../../../product';
 import { Container } from '../../../../bemit/objects';
 import { uiStateService } from '../../../../services';
 import { useAppSelector } from '../../../../store/useStore';
@@ -16,30 +18,50 @@ const options: { label: string; path: string; }[] = [
     { label: 'Destacados', path: '/featureds' },
     { label: 'Productos', path: '/products' }
 ];
-const buscados = ['Lacteos', 'Menestras', 'Azucar', 'Detergentes', 'Lejias', 'Conservas', 'Arroces', 'Aceites', 'Limpieza'];
+const buscados = ['Azucar', 'Detergentes', 'Lejias', 'Conservas', 'Arroces', 'Aceites', 'Limpieza'];
 
 
+type State = 'loading' | 'not-found' | 'ok' | 'default';
 const Header = () => {
-    const ref = useRef<HTMLElement>(null);
     const refHeader = useRef<HTMLHeadElement>(null);
-    const { products } = useAppSelector(state => state.cart);
+    const [state, setState] = useState<State>('default');
+    const {
+        product: { products },
+        cart: { products: productsCart } } = useAppSelector(state => state);
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
-
-    const handleCart = () => {
-        uiStateService.setSubject(true);
-    };
-
+    const handleCart = () => uiStateService.setSubject(true);
     const handleTheme = () => document.body.classList.toggle('dark-theme');
 
     const handleSearch = (value: string) => {
-        if (!value) return;
-        console.log(value);
+        if (!value) {
+            setState('default');
+            setFilteredProducts([]);
+            return;
+        };
+        setState('loading');
+
+        console.log({ products, value });
+        //* TAREA ASINCRONA.
+        setTimeout(() => {
+            let result = products.filter(p => p.category.toLowerCase().includes(value.toLowerCase()));
+            setFilteredProducts(result);
+            result.length
+                ? setState('ok')
+                : setState('not-found');
+
+        }, 1000);
     };
 
     const handleOpenSearch = (open: boolean) => {
-        open
-            ? refHeader.current?.classList.add('is-open-search')
-            : refHeader.current?.classList.remove('is-open-search');
+        if (open) {
+            document.body.style.overflow = 'hidden';
+            refHeader.current?.classList.add('is-open-search');
+            return;
+        }
+
+        document.body.style.overflow = 'auto';
+        refHeader.current?.classList.remove('is-open-search');
     };
 
     return (
@@ -50,7 +72,7 @@ const Header = () => {
                     Tienda Sánchez
                 </Link>
 
-                <Menu ref={ref}>
+                <Menu>
                     <MenuList>
                         {
                             options.map(({ label, path }) => (
@@ -67,7 +89,7 @@ const Header = () => {
                         onClick={handleCart}
                         className='header__icon'
                     >
-                        <Badge badgeContent={products.length}>
+                        <Badge badgeContent={productsCart.length}>
                             <BiCart />
                         </Badge>
                     </IconButton>
@@ -79,22 +101,51 @@ const Header = () => {
                         <MdOutlineDarkMode />
                     </IconButton>
                 </div>
+
                 <Search
+                    debounce={500}
                     onValue={handleSearch}
+                    depOnValue={[products]}
                     onOpen={handleOpenSearch}
                     className='header__search'
-                    debounce={800}
                 />
                 <div className='header-results'>
                     <Container className='header-results__container'>
-                        <h3 className='header-results__title'>Términos más buscados</h3>
-                        <MenuList className='header-results__list'>
-                            {
-                                buscados.map((kw, i) => (
-                                    <MenuItem key={i}>{kw}</MenuItem>
-                                ))
-                            }
-                        </MenuList>
+                        {
+                            state === 'ok' && (<>
+                                {
+                                    filteredProducts.map((p, i) => (
+                                        <CardProductSearch key={p.id} {...p} />
+                                    ))
+                                }
+                                <Link to='/' className='header-results__more'>Mas resultados</Link>
+                            </>)
+                        }
+                        {
+                            state === 'default' && (
+                                <>
+                                    <h3 className='header-results__title'>Términos más buscados</h3>
+                                    <MenuList className='header-results__list'>
+                                        {
+                                            buscados.map((kw, i) => (
+                                                <MenuItem key={i}>{kw}</MenuItem>
+                                            ))
+                                        }
+                                    </MenuList>
+                                </>
+                            )
+                        }
+                        {
+                            state === 'not-found' &&
+                            <NotFound
+                                img='https://thumbs.dreamstime.com/b/upset-magnifying-glass-cute-not-found-symbol-unsuccessful-s-upset-magnifying-glass-cute-not-found-symbol-unsuccessful-122205900.jpg'
+                                text='NO SE ENCONTRO RESULTADO'
+                            />
+                        }
+                        {
+                            state === 'loading' &&
+                            <Searching />
+                        }
                     </Container>
                 </div>
             </Toolbar>

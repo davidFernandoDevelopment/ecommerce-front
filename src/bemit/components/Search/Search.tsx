@@ -13,6 +13,7 @@ interface Props {
     debounce?: number;
     keepOpen?: boolean;
     className?: string;
+    depOnValue?: any[];
     onOpen?: (open: boolean) => void;
     onValue: (value: string) => void;
 }
@@ -23,16 +24,18 @@ const Search: FC<Props> = ({
     onOpen,
     onValue,
     className,
-    keepOpen = false,
     debounce = 0,
+    depOnValue = [],
+    keepOpen = false
 }) => {
     const navigate = useNavigate();
     const [value, setValue] = useState('');
     const [open, setOpen] = useState(false);
-    const emit = useDebounce(debounce, onValue);
     const inputRef = useRef<HTMLInputElement>(null);
+    const emit = useDebounce(debounce, onValue, depOnValue);
 
     useQuery(setValue);
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         emit(e.target.value);

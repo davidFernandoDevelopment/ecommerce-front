@@ -1,6 +1,10 @@
 export { default as CardProduct } from './CardProduct/CardProduct';
+export { default as CardProductSearch } from './CardProductSearch/CardProductSearch';
 export { default as Content } from './Content/Content';
 export { default as Header } from './Header/Header';
 export { default as HeaderAction } from './HeaderAction/HeaderAction';
 export { default as MainProduct } from './MainProduct/MainProduct';
 export { default as NewsLetter } from './NewsLetter/NewsLetter';
+export { default as NotFound } from './NotFound/NotFound';
+export { default as ResultSearchHeader } from './ResultsSearchHeader/ResultSearchHeader';
+export { default as Searching } from './Searching/Searching';

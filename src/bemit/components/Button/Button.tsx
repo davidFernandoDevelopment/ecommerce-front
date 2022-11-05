@@ -5,22 +5,25 @@ import './c-button.scss';
 
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode;
-    size?: 'smaller' | 'small' | 'normal';
+    className?: string;
     disabled?: boolean;
     fullWidth?: boolean;
+    children: React.ReactNode;
+    size?: 'smaller' | 'small' | 'normal';
 }
 
 const Button = ({
     children,
     disabled,
     fullWidth,
+    className,
     size = 'normal',
     ...rest
 }: Props) => {
 
     const classes = classNames([
         'c-button',
+        className,
         `c-button--${size}`,
         { 'c-button--disabled': disabled },
         { 'c-button--fullwidth': fullWidth }

@@ -1,0 +1,13 @@
+.not-found {
+  display: flex;
+  row-gap: 1rem;
+  flex-direction: column;
+
+  &__img {
+    object-fit: contain;
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
