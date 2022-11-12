@@ -2,7 +2,7 @@
   //* Referencia al componente BottomBar.
   $b-b: '.c-bottom-bar';
   &-bottom-bar {
-    &--hidden {
+    body.hidden-bottom-bar & {
       bottom: -100%;
     }
 

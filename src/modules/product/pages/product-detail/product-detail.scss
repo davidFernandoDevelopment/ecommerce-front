@@ -1,0 +1,74 @@
+.product-detail {
+  background-color: var(--body-color);
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__data {
+    display: flex;
+    column-gap: 1.75rem;
+    justify-content: space-between;
+  }
+  &__info {
+    flex: 1;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__description {
+    margin-top: 1rem;
+    color: var(--text-color-light);
+    font-size: var(--h4-font-size);
+  }
+  &__title {
+    text-align: center;
+    color: var(--title-color);
+    font-size: var(--h3-font-size);
+  }
+  &__name {
+    font-size: var(--h2-font-size);
+  }
+  &__category {
+    color: var(--text-color-light);
+  }
+  &__price {
+    align-self: center;
+  }
+  &__button {
+    margin-top: 1rem;
+  }
+
+  //* Referencia al componente Image
+  $c-i: '.c-image';
+  &__image#{$c-i} {
+    margin: 1.5rem 0;
+  }
+
+  //* Referencia al componente Card
+  $c-c: '.c-card';
+  &-card#{$c-c} {
+    padding: 1.25rem;
+
+    #{$c-c}-content {
+      padding: 0;
+    }
+  }
+
+  //* Referencia al componente HeaderAction
+  $c-h-a: '.c-appbar';
+  &__header#{$c-h-a} {
+    // box-shadow: 0 8px 32px rgb(26 26 26 / 10%);
+  }
+
+  //* Referencia al componente IconAction
+  $c-i-a: '.c-icon-action';
+  &__icon-action#{$c-i-a} {
+    color: red;
+    font-size: 1.5rem;
+    background-color: var(--container-color);
+    box-shadow: 0 8px 32px rgb(26 26 26 / 10%);
+  }
+}

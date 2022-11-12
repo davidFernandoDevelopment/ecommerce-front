@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import './home.scss';
 import { useProductStore } from '../../product';
 import { Container, Section } from '../../../bemit/objects';
@@ -7,12 +5,7 @@ import { CardProduct, MainProduct, NewsLetter } from '../ui';
 
 
 const Home = () => {
-    const { startSetProducts, products } = useProductStore();
-
-    useEffect(() => {
-        if (!products.length) startSetProducts();
-        //eslint-disable-next-line
-    }, []);
+    const { products } = useProductStore();
 
     return (
         <Container className='home animate__animated animate__fadeIn'>

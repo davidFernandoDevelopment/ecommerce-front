@@ -3,7 +3,9 @@
     height: 64px;
   }
 
-  &__icon-button.c-icon-button {
+  //* Referencia al componente IconButton.
+  $c-i-b: '.c-icon-button';
+  &__icon-button#{$c-i-b} {
     display: flex;
     font-size: 1.5rem;
     border-radius: 50%;

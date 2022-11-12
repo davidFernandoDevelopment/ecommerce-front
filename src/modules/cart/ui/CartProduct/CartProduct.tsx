@@ -5,11 +5,11 @@ import './cart-product.scss';
 import { Counter, StateCounter } from '../../../../ui';
 import { useAppDispatch } from '../../../../store/useStore';
 import { changeProductInCart, deleteProductInCart } from '../../../cart/store';
-import { Card, CardContent, CardImage, IconButton } from '../../../../bemit/components';
+import { Card, CardContent, CardImage, IconButton, Image } from '../../../../bemit/components';
 
 
 interface Props {
-    productId: number;
+    productId: number | string;
     price: number;
     title: string;
     image: string;
@@ -51,10 +51,9 @@ const CartProduct: FC<Props> = ({
 
     return (
         <Card p='cart-product' className='cart-product'>
-            <CardImage
-                aspectRatio='9-16'
-                src={image}
-            />
+            <CardImage>
+                <Image src={image} aspectRatio='9-16' />
+            </CardImage>
             <CardContent>
                 <h3 className='cart-product__title'>{title}</h3>
                 <p className='cart-product__price'>S/ {price}</p>

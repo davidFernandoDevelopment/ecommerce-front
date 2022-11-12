@@ -8,32 +8,62 @@ import { useNavigate } from 'react-router-dom';
 
 interface Props {
     className?: string;
-    title: string;
+    title?: string;
+    endIcon?: React.ReactNode;
+    startIcon?: React.ReactNode;
+    endIconButton?: React.ReactNode;
     position?: 'relative' | 'fixed';
-    fnAction?: (...args: any[]) => any;
+    mainAction?: (...args: any[]) => any;
+    secondaryAction?: (...args: any[]) => any;
 }
 
-const HeaderAction: FC<Props> = ({ title, className, position = 'relative', fnAction }) => {
+const HeaderAction: FC<Props> = ({
+    title,
+    className,
+    mainAction,
+    secondaryAction,
+    position = 'relative',
+    endIcon,
+    endIconButton,
+    startIcon = <AiOutlineArrowLeft />,
+}) => {
     const history = useNavigate();
 
-    const handleClick = () => {
-        if (fnAction) {
-            fnAction();
+    const mainClick = () => {
+        if (mainAction) {
+            mainAction();
             return;
         }
         history(-1);
     };
 
+    const secondaryClick = () => secondaryAction && secondaryAction();
+
     return (
         <Appbar className={className} position={position}>
             <Toolbar className='header-action__container'>
-                <IconButton
-                    onClick={handleClick}
-                    className='header-action__icon-button'
-                >
-                    <AiOutlineArrowLeft />
-                </IconButton>
-                <h3 className='header-action__title'>{title}</h3>
+                {
+                    startIcon && (
+                        <IconButton
+                            onClick={mainClick}
+                            className='header-action__icon-button'
+                        >
+                            {startIcon}
+                        </IconButton>
+                    )
+                }
+                {title && <h3 className='header-action__title'>{title}</h3>}
+                {
+                    endIcon && (
+                        <IconButton
+                            onClick={secondaryClick}
+                            className='header-action__icon-button'
+                        >
+                            {endIcon}
+                        </IconButton>
+                    )
+                }
+                {endIconButton}
             </Toolbar>
         </Appbar>
     );

@@ -1,14 +1,15 @@
+import { useMemo } from 'react';
 import { toast } from 'react-toastify';
 import { BiPlus } from 'react-icons/bi';
 import { FiTrash2 } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import './card-product.scss';
-import { Product } from '../../../product';
-import { Card, CardImage, CardContent, IconAction, Ribbon, Discount, StateIconAction } from '../../../../bemit/components';
+import { Product, setCurrentProduct } from '../../../product';
 import { useAppDispatch, useAppSelector } from '../../../../store/useStore';
 import { changeProductInCart, deleteProductInCart } from '../../../cart/store';
-import { useMemo } from 'react';
+import { Card, CardImage, CardContent, IconAction, Ribbon, Discount, StateIconAction, Image } from '../../../../bemit/components';
 
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
 
 const CardProduct = ({ product, newProduct, offerProduct }: Props) => {
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { products } = useAppSelector(state => state.cart);
 
@@ -48,10 +50,24 @@ const CardProduct = ({ product, newProduct, offerProduct }: Props) => {
 
     return (
         <Card p='card-product'>
-            <CardImage src={product.image} alt={`Card Product ${product.id}`} />
+            <CardImage>
+                <Image
+                    src={product.image}
+                    alt={`Card Product ${product.id}`}
+                    loadingImg='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921'
+                />
+            </CardImage>
             <CardContent>
                 <h5 className='card-product__category'>{product.category}</h5>
-                <h3 className='card-product__title'>{product.title}</h3>
+                <h3
+                    className='card-product__title'
+                    onClick={() => {
+                        dispatch(setCurrentProduct(product));
+                        navigate(`products/${product.id}`);
+                    }}
+                >
+                    {product.title}
+                </h3>
                 <p className='card-product__price'>S/ {product.price}</p>
             </CardContent>
             <IconAction

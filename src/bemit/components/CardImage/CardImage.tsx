@@ -1,28 +1,23 @@
 import classnames from 'classnames';
-import { ImgHTMLAttributes } from 'react';
 
 import './c-card-image.scss';
-import { TAspectRatio } from '../../data';
-import { AspectRatio } from '../../objects';
 
-interface Props extends ImgHTMLAttributes<HTMLImageElement> {
+interface Props {
     className?: string;
-    aspectRatio?: TAspectRatio;
+    children?: React.ReactNode;
 }
 
-const CardImage = ({ aspectRatio, className, ...rest }: Props) => {
+const CardImage = ({
+    children,
+    className
+}: Props) => {
 
     const classes = classnames([
         'c-card-image', className
     ]);
 
     return (
-        <AspectRatio
-            ratio={aspectRatio}
-            className={classes}
-        >
-            <img className='c-card-image__img' alt={rest.alt} {...rest} />
-        </AspectRatio>
+        <div className={classes}>{children}</div>
     );
 };
 export default CardImage;

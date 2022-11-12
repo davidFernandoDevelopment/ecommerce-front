@@ -1,5 +1,5 @@
 export interface ProductCart {
-	productId: number;
+	productId: number | string;
 	price: number;
 	title: string;
 	image: string;

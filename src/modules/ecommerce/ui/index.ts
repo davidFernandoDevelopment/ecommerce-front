@@ -6,5 +6,5 @@ export { default as HeaderAction } from './HeaderAction/HeaderAction';
 export { default as MainProduct } from './MainProduct/MainProduct';
 export { default as NewsLetter } from './NewsLetter/NewsLetter';
 export { default as NotFound } from './NotFound/NotFound';
-export { default as ResultSearchHeader } from './ResultsSearchHeader/ResultSearchHeader';
+export { default as SearchResult } from './SearchResult/SearchResult';
 export { default as Searching } from './Searching/Searching';

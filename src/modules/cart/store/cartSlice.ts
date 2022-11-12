@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
 		},
 		deleteProductInCart: (
 			state: CartState,
-			{ payload: id }: PayloadAction<number>
+			{ payload: id }: PayloadAction<number | string>
 		) => {
 			state.products = state.products.filter((p) => p.productId !== id);
 			state.total = state.products

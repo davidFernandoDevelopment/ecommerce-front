@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import './card-product-search.scss';
-import { Button, Card, CardContent, CardImage } from '../../../../bemit/components';
+import { Button, Card, CardContent, CardImage, Image } from '../../../../bemit/components';
 
 
 interface Props {
@@ -13,7 +13,9 @@ interface Props {
 const CardProductSearch: FC<Props> = ({ title, price, image }: Props) => {
     return (
         <Card className='card-product-search'>
-            <CardImage aspectRatio='16-9' src={image} />
+            <CardImage>
+                <Image aspectRatio='16-9' src={image} />
+            </CardImage>
             <CardContent>
                 <h3 className='card-product-search__title'>{title}</h3>
                 <p className='card-product-search__price'>S/ {price}</p>

@@ -35,7 +35,7 @@ const Cart = () => {
     return (
         <div ref={cartRef} className='cart'>
             <HeaderAction
-                fnAction={closeCart}
+                mainAction={closeCart}
                 className='cart__header'
                 title='Carrito de compras'
             />
