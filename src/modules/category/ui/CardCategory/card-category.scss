@@ -2,7 +2,7 @@
   //* Nodos exclusivos del componente.
   &__title {
     text-align: center;
-    font-size: var(--h3-font-size);
+    font-size: var(--h4-font-size);
     font-weight: var(--font-medium);
   }
 
@@ -10,10 +10,9 @@
   $c-c: '.c-card';
   &-card#{$c-c} {
     padding: 0.75rem;
-    max-height: 200px;
 
     #{$c-c}-content {
-        padding: 0.5rem;
+      padding: 0.5rem;
     }
   }
 }

@@ -63,7 +63,7 @@ const CardProduct = ({ product, newProduct, offerProduct }: Props) => {
                     className='card-product__title'
                     onClick={() => {
                         dispatch(setCurrentProduct(product));
-                        navigate(`products/${product.id}`);
+                        navigate(`/products/${product.id}`);
                     }}
                 >
                     {product.title}

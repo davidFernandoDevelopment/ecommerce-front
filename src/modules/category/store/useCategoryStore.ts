@@ -1,6 +1,7 @@
 import { api } from '../../../interceptor';
 import { getCategory, setCategories, searchCategory } from './categorySlice';
 import { useAppDispatch, useAppSelector } from '../../../store';
+import { Product } from '../../product';
 
 export const useCategoryStore = () => {
 	const dispatch = useAppDispatch();
@@ -17,7 +18,9 @@ export const useCategoryStore = () => {
 
 	const startGetCategory = async (category: string) => {
 		try {
-			const { data } = await api.get(`products/category/${category}`);
+			const { data } = await api.get<Product[]>(
+				`products/category/${category}`
+			);
 			dispatch(getCategory(data));
 		} catch (error) {}
 	};

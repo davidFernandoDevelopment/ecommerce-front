@@ -14,7 +14,7 @@ const CardProductSearch: FC<Props> = ({ title, price, image }: Props) => {
     return (
         <Card className='card-product-search'>
             <CardImage>
-                <Image aspectRatio='16-9' src={image} />
+                <Image aspectRatio='9-16' src={image} />
             </CardImage>
             <CardContent>
                 <h3 className='card-product-search__title'>{title}</h3>

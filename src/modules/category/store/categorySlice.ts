@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Category } from '../models/index';
 import { initialState, CategoryState } from './categoryState';
+import { Product } from '../../product/models/product.model';
 
 export const categorySlice = createSlice({
 	name: 'category',
@@ -12,9 +13,14 @@ export const categorySlice = createSlice({
 			{ payload }: PayloadAction<Category[]>
 		) => {
 			state.categories = [...state.categories, ...payload];
+			state.resultCategories = [...state.categories];
 		},
 
-		getCategory: (state: CategoryState, { payload }: PayloadAction<string>) => {
+		getCategory: (
+			state: CategoryState,
+			{ payload }: PayloadAction<Product[]>
+		) => {
+			console.log({ payload });
 			state.currentCategory = payload;
 		},
 

@@ -61,6 +61,8 @@
   $c-h-a: '.c-appbar';
   &__header#{$c-h-a} {
     // box-shadow: 0 8px 32px rgb(26 26 26 / 10%);
+    position: sticky;
+    top: 0;
   }
 
   //* Referencia al componente IconAction

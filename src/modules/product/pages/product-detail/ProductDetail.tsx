@@ -19,7 +19,7 @@ const ProductDetail = () => {
 
     useHiddenBottomBar(() => {
         if (products.length) {
-            let currentProduct = products.find(p => p.id === id);
+            let currentProduct = products.find(p => `${p.id}` === id);
             console.log({ products, currentProduct, id });
             if (currentProduct) setProduct(currentProduct);
         }
@@ -29,16 +29,13 @@ const ProductDetail = () => {
 
     return (
         <div className='product-detail'>
-            <HeaderAction
-                className='product-detail__header'
-                endIconButton={
-                    <IconAction
-                        p='product-detail'
-                        iconAction={<AiFillHeart />}
-                        iconDefault={<AiOutlineHeart />}
-                    />
-                }
-            />
+            <HeaderAction className='product-detail__header'>
+                <IconAction
+                    p='product-detail'
+                    iconAction={<AiFillHeart />}
+                    iconDefault={<AiOutlineHeart />}
+                />
+            </HeaderAction>
             <Container>
                 <Image src={product.image} className='product-detail__image' />
                 <div className='product-detail__cards'>

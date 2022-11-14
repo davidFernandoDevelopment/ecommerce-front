@@ -1,5 +1,64 @@
-@use '../../../../bemit/tools/mixins/layout.scss' as l;
-
 .products {
-  @include l.header-space-layout;
+  position: relative;
+  background-color: var(--body-color);
+  z-index: calc(var(--z-app-bar) + 1);
+
+  &__container {
+    margin-top: 1.5rem;
+  }
+
+  &__title {
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  &__icons {
+    gap: 1rem;
+    display: flex;
+    margin-right: 56px;
+  }
+
+  //* Referencia al componente HeaderActions
+  $c-h-a: '.c-appbar';
+  &__header#{$c-h-a} {
+    position: sticky;
+    top: 0;
+
+    .c-toolbar {
+      height: 56px;
+    }
+  }
+
+  //* Referencia al componente IconButton
+  $c-i-b: '.c-icon-button';
+  &__filter#{$c-i-b} {
+    padding: 0.25em;
+    font-size: 1.5rem;
+  }
+
+  //* Referencia al componente Search
+  $c-s: '.c-search';
+  &__search#{$c-s} {
+    font-size: 1.25rem;
+    position: absolute;
+    right: 24px;
+
+    &.is-active {
+      font-size: 1.5rem;
+      width: calc(100% - 48px);
+    }
+
+    #{$c-s}__icon {
+      > * {
+        font-size: 1.5rem;
+        transition: font-size var(--transition);
+      }
+    }
+  }
+
+  //* Referencia al objeto Section
+  $o-s: '.o-section';
+  &__section#{$o-s} {
+    padding-top: 1.5rem;
+  }
 }

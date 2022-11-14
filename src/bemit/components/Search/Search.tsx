@@ -5,7 +5,7 @@ import { AiOutlineClose, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ChangeEvent, FC, FormEvent, useRef, useState } from 'react';
 
 import './c-search.scss';
-import { useDebounce, useQuery } from '../../../hooks';
+import { useDebounce } from '../../../hooks';
 
 
 interface Props {
@@ -33,8 +33,6 @@ const Search: FC<Props> = ({
     const [open, setOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const emit = useDebounce(debounce, onValue, depOnValue);
-
-    useQuery(setValue);
 
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

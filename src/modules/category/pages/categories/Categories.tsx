@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 import './categories.scss';
 import { useCategoryStore } from '../../store';
@@ -14,7 +14,7 @@ const Categories = () => {
         categories, resultCategories, startSetCategories, syncSearchCategory
     } = useCategoryStore();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!categories.length) startSetCategories();
 
         return () => {
@@ -25,8 +25,7 @@ const Categories = () => {
 
 
     const searchCategory = (category: string) => {
-        if (!category) return;
-        console.log({ category });
+        // if (!category) return;
         syncSearchCategory(category);
     };
 
@@ -48,30 +47,6 @@ const Categories = () => {
                 <Section
                     title={`${!resultCategories.length ? 'No hay resultados' : ''}`}
                 >
-                    {
-                        resultCategories.map(category => (
-                            <CardCategory
-                                key={category}
-                                category={category}
-                            />
-                        ))
-                    }
-                    {
-                        resultCategories.map(category => (
-                            <CardCategory
-                                key={category}
-                                category={category}
-                            />
-                        ))
-                    }
-                    {
-                        resultCategories.map(category => (
-                            <CardCategory
-                                key={category}
-                                category={category}
-                            />
-                        ))
-                    }
                     {
                         resultCategories.map(category => (
                             <CardCategory

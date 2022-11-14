@@ -1,30 +1,26 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 import './header-action.scss';
 import { Appbar, IconButton, Toolbar } from '../../../../bemit/components';
-import { useNavigate } from 'react-router-dom';
 
 
 interface Props {
-    className?: string;
     title?: string;
-    endIcon?: React.ReactNode;
+    className?: string;
+    children?: React.ReactNode;
     startIcon?: React.ReactNode;
-    endIconButton?: React.ReactNode;
     position?: 'relative' | 'fixed';
     mainAction?: (...args: any[]) => any;
-    secondaryAction?: (...args: any[]) => any;
 }
 
 const HeaderAction: FC<Props> = ({
     title,
+    children,
     className,
     mainAction,
-    secondaryAction,
     position = 'relative',
-    endIcon,
-    endIconButton,
     startIcon = <AiOutlineArrowLeft />,
 }) => {
     const history = useNavigate();
@@ -36,8 +32,6 @@ const HeaderAction: FC<Props> = ({
         }
         history(-1);
     };
-
-    const secondaryClick = () => secondaryAction && secondaryAction();
 
     return (
         <Appbar className={className} position={position}>
@@ -53,17 +47,7 @@ const HeaderAction: FC<Props> = ({
                     )
                 }
                 {title && <h3 className='header-action__title'>{title}</h3>}
-                {
-                    endIcon && (
-                        <IconButton
-                            onClick={secondaryClick}
-                            className='header-action__icon-button'
-                        >
-                            {endIcon}
-                        </IconButton>
-                    )
-                }
-                {endIconButton}
+                {children}
             </Toolbar>
         </Appbar>
     );
