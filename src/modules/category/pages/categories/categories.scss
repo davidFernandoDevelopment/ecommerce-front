@@ -13,6 +13,13 @@
     margin-bottom: calc(var(--header-height) + 1.5rem);
   }
 
+  &__loading {
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   //* Referencia al componente Seacrh.
   $c-s: '.c-search';
   &__search#{$c-s} {

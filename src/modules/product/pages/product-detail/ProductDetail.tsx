@@ -3,13 +3,14 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 
 import './product-detail.scss';
+import { useState } from 'react';
+import { Product } from '../../models';
+import { useAppSelector } from '../../../../store';
+import Caracol from '../../../../images/caracol.png';
+import { Container } from '../../../../bemit/objects';
 import { HeaderAction, Searching } from '../../../ecommerce';
 import { useHiddenBottomBar } from '../../../../hooks/useHiddenBottomBar';
 import { Button, Card, CardContent, IconAction, Image } from '../../../../bemit/components';
-import { Container } from '../../../../bemit/objects';
-import { useAppSelector } from '../../../../store';
-import { useState } from 'react';
-import { Product } from '../../models';
 
 
 const ProductDetail = () => {
@@ -37,7 +38,11 @@ const ProductDetail = () => {
                 />
             </HeaderAction>
             <Container>
-                <Image src={product.image} className='product-detail__image' />
+                <Image
+                    src={product.image}
+                    className='product-detail__image'
+                    loadingImg={Caracol}
+                />
                 <div className='product-detail__cards'>
                     <Card p='product-detail'>
                         <CardContent>

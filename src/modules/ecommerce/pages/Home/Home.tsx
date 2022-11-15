@@ -1,7 +1,7 @@
 import './home.scss';
-import { useProductStore } from '../../product';
-import { Container, Section } from '../../../bemit/objects';
-import { CardProduct, MainProduct, NewsLetter } from '../ui';
+import { useProductStore } from '../../../product';
+import { Container, Section } from '../../../../bemit/objects';
+import { CardProduct, MainProduct, NewsLetter } from '../../ui';
 
 
 const Home = () => {

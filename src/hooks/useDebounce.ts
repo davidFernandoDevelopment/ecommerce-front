@@ -9,6 +9,7 @@ export const useDebounce = <T>(
 	const [subject] = useState(new Subject<T>());
 
 	useEffect(() => {
+
 		const subscription = subject.pipe(debounceTime(time)).subscribe((val) => {
 			cb(val);
 		});
@@ -20,5 +21,5 @@ export const useDebounce = <T>(
 		//eslint-disable-next-line
 	}, [...depsCB]);
 
-	return (v: T) => subject.next(v);
+	return [(v: T) => subject.next(v)];
 };

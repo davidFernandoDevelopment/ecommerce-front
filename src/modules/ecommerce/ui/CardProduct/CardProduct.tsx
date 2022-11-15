@@ -54,7 +54,6 @@ const CardProduct = ({ product, newProduct, offerProduct }: Props) => {
                 <Image
                     src={product.image}
                     alt={`Card Product ${product.id}`}
-                    loadingImg='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921'
                 />
             </CardImage>
             <CardContent>

@@ -20,7 +20,6 @@ const CardCategory: FC<Props> = ({ category }) => {
                 <Image
                     aspectRatio='16-9'
                     src='https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg'
-                    loadingImg='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921'
                 />
             </CardImage>
             <CardContent>

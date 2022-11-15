@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { useLayoutEffect } from 'react';
 import { MdSearch } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineArrowLeft } from 'react-icons/ai';
@@ -14,8 +15,11 @@ interface Props {
     keepOpen?: boolean;
     className?: string;
     depOnValue?: any[];
+    initialValue?: string;
     onOpen?: (open: boolean) => void;
-    onValue: (value: string) => void;
+    onSubmit?: (value: string) => void;
+    onDebounce?: () => void;
+    onValue: (value: string, state?: 'loading' | 'finish') => void;
 }
 
 
@@ -23,21 +27,29 @@ const Search: FC<Props> = ({
     title,
     onOpen,
     onValue,
+    onSubmit,
     className,
+    onDebounce,
     debounce = 0,
     depOnValue = [],
-    keepOpen = false
+    keepOpen = false,
+    initialValue,
 }) => {
     const navigate = useNavigate();
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState(initialValue || '');
     const [open, setOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    const emit = useDebounce(debounce, onValue, depOnValue);
+    const [emit] = useDebounce(debounce, onValue, depOnValue);
 
+
+    useLayoutEffect(() => {
+        if (initialValue) setValue(initialValue);
+    }, [initialValue]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         emit(e.target.value);
         setValue(e.target.value);
+        loadingDebounce();
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -46,8 +58,15 @@ const Search: FC<Props> = ({
             navigate('', { replace: true });
             return;
         }
-        setValue('');
-        onValue(value.trim());
+        if (!initialValue) {
+            onValue('');
+            setValue('');
+        }
+        setOpen(false);
+        if (onSubmit) {
+            onSubmit(value);
+            return;
+        };
         navigate(`?q=${value.toLowerCase()}`, { replace: true });
     };
 
@@ -60,10 +79,13 @@ const Search: FC<Props> = ({
         });
     };
 
+    const loadingDebounce = () => onDebounce && debounce && onDebounce();
+
     const clear = () => {
         emit('');
         setValue('');
         inputRef.current?.focus();
+        loadingDebounce();
     };
 
     const classes = classnames([

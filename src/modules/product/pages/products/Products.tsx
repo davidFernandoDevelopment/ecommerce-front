@@ -10,6 +10,7 @@ import { CardProduct, HeaderAction } from '../../../ecommerce';
 import { Container, Section } from '../../../../bemit/objects';
 import { useHiddenBottomBar, useQuery } from '../../../../hooks';
 import { Badge, IconButton, Search } from '../../../../bemit/components';
+import { Spinner } from '../../../../ui';
 
 
 const Products = () => {
@@ -17,16 +18,32 @@ const Products = () => {
         cart: { products },
         category: { currentCategory }
     } = useAppSelector(state => state);
+    const [query, setQuery] = useState('');
+    const [loading, setLoading] = useState(false);
     const { startGetCategory } = useCategoryStore();
     const [category, setCategory] = useState<string>('');
 
     const q = useQuery(setCategory);
     useHiddenBottomBar(() => {
-        if (q) startGetCategory(q);
+        if (q) {
+            setLoading(true);
+            startGetCategory(q)
+                .then(_ => setLoading(false));
+        };
     }, [q]);
 
 
+    const handleDebounce = () => setLoading(true);
     const handleCart = () => uiStateService.setSubject(true);
+    const handleSearch = (queryWord: string) => {
+        setLoading(false);
+        if (!queryWord) {
+            setQuery('');
+            return;
+        };
+        setQuery(queryWord);
+        console.log({ queryWord });
+    };
 
     return (
         <div className='products animate__animated animate__bounceInDown'>
@@ -45,19 +62,29 @@ const Products = () => {
                     </IconButton>
                 </div>
                 <Search
+                    debounce={500}
+                    onValue={handleSearch}
+                    onDebounce={handleDebounce}
                     className='products__search'
-                    onValue={() => { }}
                 />
             </HeaderAction>
             <Container className='products__container'>
                 <h1 className='products__title'>{category}</h1>
-                <Section className='products__section'>
-                    {
-                        currentCategory.map(product => (
-                            <CardProduct key={product.id} product={product} />
-                        ))
-                    }
-                </Section>
+                {
+                    loading
+                        ? <Spinner />
+                        : (
+                            <Section className='products__section'>
+                                {
+                                    currentCategory
+                                        .filter(c => query ? c.title.toLowerCase().includes(query.toLowerCase()) : true)
+                                        .map(product => (
+                                            <CardProduct key={product.id} product={product} />
+                                        ))
+                                }
+                            </Section>
+                        )
+                }
             </Container>
         </div>
     );

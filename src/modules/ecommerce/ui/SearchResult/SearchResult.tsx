@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useCallback, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './search-result.scss';
 import { Product } from '../../../product';
@@ -17,17 +17,24 @@ const buscados = ['Azucar', 'Detergentes', 'Lejias', 'Conservas', 'Arroces', 'Ac
 
 
 const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
+    const navigate = useNavigate();
     const [state, setState] = useState<State>('default');
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
-
+    const handleSubmit = useCallback((query: string) => {
+        console.log('onSubmit !!!');
+        // setFilteredProducts([]);
+        document.body.style.overflow = 'auto';
+        document.querySelector('.c-search')?.classList.remove('is-active');
+        document.querySelector('.header')?.classList.remove('is-open-search');
+        navigate(`search?query=${query}`);
+    }, [navigate]);
     const handleSearch = (value: string) => {
-        if (!value) {
+        if (!value.trim()) {
             setState('default');
             setFilteredProducts([]);
             return;
         };
-        setState('loading');
 
         console.log({ products, value });
         //* TAREA ASINCRONA.
@@ -40,14 +47,17 @@ const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
 
         }, 1000);
     };
+    const handleDebounce = () => setState('loading');
 
     return (
         <>
             <Search
                 debounce={500}
-                onValue={handleSearch}
-                depOnValue={[products]}
                 onOpen={onOpenSearch}
+                onValue={handleSearch}
+                onSubmit={handleSubmit}
+                onDebounce={handleDebounce}
+                depOnValue={[products]}
                 className='search-result__search'
             />
             <div className='search-result__results'>
