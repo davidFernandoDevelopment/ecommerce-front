@@ -47,9 +47,9 @@ const Search: FC<Props> = ({
     }, [initialValue]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        loadingDebounce();
         emit(e.target.value);
         setValue(e.target.value);
-        loadingDebounce();
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -59,8 +59,8 @@ const Search: FC<Props> = ({
             return;
         }
         if (!initialValue) {
-            onValue('');
-            setValue('');
+            // onValue('');
+            // setValue('');
         }
         setOpen(false);
         if (onSubmit) {

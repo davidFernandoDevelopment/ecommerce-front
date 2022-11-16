@@ -23,13 +23,13 @@ const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
 
     const handleSubmit = useCallback((query: string) => {
         console.log('onSubmit !!!');
-        // setFilteredProducts([]);
         document.body.style.overflow = 'auto';
         document.querySelector('.c-search')?.classList.remove('is-active');
         document.querySelector('.header')?.classList.remove('is-open-search');
-        navigate(`search?query=${query}`);
+        navigate(`search?q=${query}`);
     }, [navigate]);
-    const handleSearch = (value: string) => {
+
+    const handleSearch = async (value: string) => {
         if (!value.trim()) {
             setState('default');
             setFilteredProducts([]);
@@ -38,14 +38,20 @@ const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
 
         console.log({ products, value });
         //* TAREA ASINCRONA.
-        setTimeout(() => {
-            let result = products.filter(p => p.category.toLowerCase().includes(value.toLowerCase()));
-            setFilteredProducts(result);
-            result.length
-                ? setState('ok')
-                : setState('not-found');
-
-        }, 1000);
+        const result = await helper(value);
+        console.log('hola mundo !!!');
+        setFilteredProducts(result);
+        result.length
+            ? setState('ok')
+            : setState('not-found');
+    };
+    const helper = (value: string): Promise<Product[]> => {
+        return new Promise((resolve, _) => {
+            setTimeout(() => {
+                let result = products.filter(p => p.category.toLowerCase().includes(value.toLowerCase()));
+                resolve(result);
+            }, 1000);
+        });
     };
     const handleDebounce = () => setState('loading');
 

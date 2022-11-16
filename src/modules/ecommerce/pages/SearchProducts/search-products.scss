@@ -2,4 +2,19 @@
 
 .search-products {
   @include l.header-space-layout;
+
+  &__title {
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  &__word {
+    font-size: var(--h3-font-size);
+  }
+
+  //* Referencia al objeto Section
+  $o-s: '.o-section';
+  &__section#{$o-s} {
+    padding-top: 2.5rem;
+  }
 }
