@@ -29,7 +29,7 @@ const ProductDetail = () => {
     if (!product) return <Searching />;
 
     return (
-        <div className='product-detail'>
+        <div className='product-detail animate__animated animate__fadeIn'>
             <HeaderAction className='product-detail__header'>
                 <IconAction
                     p='product-detail'

@@ -1,5 +1,7 @@
 .c-image {
-  &__spinner {
+  //* Referencia a la imagen del objeto AspectRatio.
+  $a-r: '.o-aspect-ratio__img';
+  &__spinner#{$a-r} {
     width: 100%;
     height: 100%;
     display: flex;

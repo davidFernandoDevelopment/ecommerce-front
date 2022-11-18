@@ -3,6 +3,7 @@ import { BiCart } from 'react-icons/bi';
 import { VscListFilter } from 'react-icons/vsc';
 
 import './products.scss';
+import { Spinner } from '../../../../ui';
 import { useAppSelector } from '../../../../store';
 import { uiStateService } from '../../../../services';
 import { useCategoryStore } from '../../../category/store';
@@ -10,7 +11,6 @@ import { CardProduct, HeaderAction } from '../../../ecommerce';
 import { Container, Section } from '../../../../bemit/objects';
 import { useHiddenBottomBar, useQuery } from '../../../../hooks';
 import { Badge, IconButton, Search } from '../../../../bemit/components';
-import { Spinner } from '../../../../ui';
 
 
 const Products = () => {
@@ -21,12 +21,12 @@ const Products = () => {
     const [query, setQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const { startGetCategory } = useCategoryStore();
-    const [category, setCategory] = useState<string>('');
 
-    const q = useQuery(setCategory);
+    const q = useQuery();
     useHiddenBottomBar(() => {
+        setLoading(true);
+
         if (q) {
-            setLoading(true);
             startGetCategory(q)
                 .then(_ => setLoading(false));
         };
@@ -69,7 +69,7 @@ const Products = () => {
                 />
             </HeaderAction>
             <Container className='products__container'>
-                <h1 className='products__title'>{category}</h1>
+                <h1 className='products__title'>{q}</h1>
                 {
                     loading
                         ? <Spinner />

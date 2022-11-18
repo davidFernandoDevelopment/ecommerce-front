@@ -1,13 +1,13 @@
 import { useLayoutEffect, useState, useCallback } from 'react';
 
 import './categories.scss';
+import { Spinner } from '../../../../ui';
+import { useQuery } from '../../../../hooks';
 import { useCategoryStore } from '../../store';
 import { HeaderAction } from '../../../ecommerce';
 import { Search } from '../../../../bemit/components';
 import CardCategory from '../../ui/CardCategory/CardCategory';
 import { Container, Section } from '../../../../bemit/objects';
-import { useQuery } from '../../../../hooks';
-import { Spinner } from '../../../../ui';
 
 
 
@@ -16,10 +16,15 @@ const Categories = () => {
         categories, resultCategories,
         startSetCategories, syncSearchCategory
     } = useCategoryStore();
-    const [query, setQuery] = useState('');
+
+    const query = useQuery();
     const [loading, setLoading] = useState(true);
 
-    const q = useQuery(setQuery);
+    useLayoutEffect(() => {
+        if (query && categories.length > 0) searchCategory(query);
+        //eslint-disable-next-line
+    }, [query, categories]);
+
     useLayoutEffect(() => {
         setLoading(true);
         startSetCategories()
@@ -31,18 +36,8 @@ const Categories = () => {
         //eslint-disable-next-line
     }, []);
 
-    useLayoutEffect(() => {
-        console.log({ q });
-        if (q) {
-            setQuery(q);
-            searchCategory(q);
-        }
-        //eslint-disable-next-line
-    }, [q, categories]);
-
 
     const searchCategory = (category: string) => {
-        // if (!category) return;
         console.log('first');
         syncSearchCategory(category);
         setLoading(false);

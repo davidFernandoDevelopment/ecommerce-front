@@ -2,10 +2,10 @@ import classnames from 'classnames';
 import { FC, useEffect, useRef, ImgHTMLAttributes } from 'react';
 
 import './c-image.scss';
+import { Spinner1 } from '../../../ui';
 import { TAspectRatio } from '../../data';
 import { AspectRatio } from '../../objects';
 import { useImageStatus } from '../../../hooks';
-import { Spinner1 } from '../../../ui';
 
 
 

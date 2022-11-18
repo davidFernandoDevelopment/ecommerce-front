@@ -1,5 +1,8 @@
 .product-detail {
   background-color: var(--body-color);
+  height: 100vh;
+  position: relative;
+  z-index: calc(var(--z-app-bar) + 5);
 
   &__cards {
     display: flex;

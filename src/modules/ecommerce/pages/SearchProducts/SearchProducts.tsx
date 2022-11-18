@@ -10,16 +10,13 @@ import { Spinner } from '../../../../ui';
 
 
 const SearchProducts = () => {
-    const [word, setWord] = useState('');
     const [loading, setLoading] = useState(true);
     const [searchProducts, setSearchProducts] = useState<Product[]>([]);
     const { product: { products } } = useAppSelector(state => state);
 
-    const q = useQuery(setWord);
+    const word = useQuery();
 
-    useHiddenBottomBar(() => {
-        if (q) setWord(q);
-    }, [q]);
+    useHiddenBottomBar();
 
     useLayoutEffect(() => {
         if (word) {

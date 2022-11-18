@@ -18,15 +18,14 @@ const buscados = ['Azucar', 'Detergentes', 'Lejias', 'Conservas', 'Arroces', 'Ac
 
 const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
     const navigate = useNavigate();
+    const [openSearch, setOpenSearch] = useState(false);
     const [state, setState] = useState<State>('default');
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+    const [query, setQuery] = useState('');
+
 
     const handleSubmit = useCallback((query: string) => {
-        console.log('onSubmit !!!');
-        document.body.style.overflow = 'auto';
-        document.querySelector('.c-search')?.classList.remove('is-active');
-        document.querySelector('.header')?.classList.remove('is-open-search');
-        navigate(`search?q=${query}`);
+        if (query !== '') navigate(`search?q=${query}`);
     }, [navigate]);
 
     const handleSearch = async (value: string) => {
@@ -35,7 +34,7 @@ const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
             setFilteredProducts([]);
             return;
         };
-
+        setQuery(value);
         console.log({ products, value });
         //* TAREA ASINCRONA.
         const result = await helper(value);
@@ -54,12 +53,17 @@ const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
         });
     };
     const handleDebounce = () => setState('loading');
+    const handleOpen = (open: boolean) => {
+        onOpenSearch(open);
+        setOpenSearch(open);
+    };
 
     return (
         <>
             <Search
                 debounce={500}
-                onOpen={onOpenSearch}
+                onOpen={handleOpen}
+                openValue={openSearch}
                 onValue={handleSearch}
                 onSubmit={handleSubmit}
                 onDebounce={handleDebounce}
@@ -72,10 +76,22 @@ const SearchResult: FC<Props> = ({ onOpenSearch, products }) => {
                         state === 'ok' && (<>
                             {
                                 filteredProducts.map(p => (
-                                    <CardProductSearch key={p.id} {...p} />
+                                    <CardProductSearch key={p.id} product={p} onSubmit={handleSubmit} />
                                 ))
                             }
-                            <Link to='/' className='search-result__more'>Mas resultados</Link>
+                            <Link
+                                to={`search?q=${query}`}
+                                className='search-result__more'
+                                onClick={() => {
+                                    handleSubmit(query);
+                                    document.body.style.overflow = 'auto';
+                                    document.querySelector('.c-search')?.classList.remove('is-active');
+                                    document.querySelector('.header')?.classList.remove('is-open-search');
+                                    setOpenSearch(false);
+                                }}
+                            >
+                                Mas resultados
+                            </Link>
                         </>)
                     }
                     {

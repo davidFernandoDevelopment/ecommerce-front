@@ -1,7 +1,7 @@
 import classnames from 'classnames';
-import { useLayoutEffect } from 'react';
 import { MdSearch } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useLayoutEffect } from 'react';
 import { AiOutlineClose, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ChangeEvent, FC, FormEvent, useRef, useState } from 'react';
 
@@ -15,6 +15,7 @@ interface Props {
     keepOpen?: boolean;
     className?: string;
     depOnValue?: any[];
+    openValue?: boolean;
     initialValue?: string;
     onOpen?: (open: boolean) => void;
     onSubmit?: (value: string) => void;
@@ -28,6 +29,7 @@ const Search: FC<Props> = ({
     onOpen,
     onValue,
     onSubmit,
+    openValue,
     className,
     onDebounce,
     debounce = 0,
@@ -37,7 +39,7 @@ const Search: FC<Props> = ({
 }) => {
     const navigate = useNavigate();
     const [value, setValue] = useState(initialValue || '');
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(openValue || false);
     const inputRef = useRef<HTMLInputElement>(null);
     const [emit] = useDebounce(debounce, onValue, depOnValue);
 
@@ -45,6 +47,10 @@ const Search: FC<Props> = ({
     useLayoutEffect(() => {
         if (initialValue) setValue(initialValue);
     }, [initialValue]);
+
+    useEffect(() => {
+        if (openValue !== undefined) setOpen(openValue);
+    }, [openValue]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         loadingDebounce();
@@ -72,11 +78,18 @@ const Search: FC<Props> = ({
 
     const toggleExpand = () => {
         if (keepOpen) return;
-        setOpen(prev => {
-            if (!prev) inputRef.current?.focus();
-            if (onOpen) onOpen(!prev);
-            return !prev;
-        });
+        if (openValue === undefined) {
+            setOpen(prev => {
+                if (!prev) inputRef.current?.focus();
+                if (onOpen) onOpen(!prev);
+                return !prev;
+            });
+        }
+        if (onOpen && openValue !== undefined) {
+            onOpen(!openValue);
+            setOpen(!openValue);
+            if (!openValue) inputRef.current?.focus();
+        };
     };
 
     const loadingDebounce = () => onDebounce && debounce && onDebounce();
