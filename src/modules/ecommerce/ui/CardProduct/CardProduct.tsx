@@ -1,15 +1,13 @@
-import { useMemo } from 'react';
-import { toast } from 'react-toastify';
 import { BiPlus } from 'react-icons/bi';
 import { FiTrash2 } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import './card-product.scss';
+import { useCart, useFav } from '../../../../hooks';
 import { Product, setCurrentProduct } from '../../../product';
-import { useAppDispatch, useAppSelector } from '../../../../store/useStore';
-import { changeProductInCart, deleteProductInCart } from '../../../cart/store';
-import { Card, CardImage, CardContent, IconAction, Ribbon, Discount, StateIconAction, Image } from '../../../../bemit/components';
+import { useAppDispatch } from '../../../../store/useStore';
+import { Card, CardImage, CardContent, IconAction, Ribbon, Discount, Image } from '../../../../bemit/components';
 
 
 interface Props {
@@ -22,31 +20,9 @@ const CardProduct = ({ product, newProduct, offerProduct }: Props) => {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { products } = useAppSelector(state => state.cart);
+    const { product: productFav, handleActionFav } = useFav(product.id.toString(), product);
+    const { product: productCart, handleActionCart } = useCart(product.id.toString(), product);
 
-    const changeActiveAction = useMemo(() => {
-        return !!products.find(p => p.productId === product.id);
-        //eslint-disable-next-line
-    }, [products]);
-    const handleAction = (state: StateIconAction) => {
-        if (state === 'active') {
-            //* TODO: ADD PRODUCT IN SHOPPING-CART.
-            console.log('PRODUCT ADDED !!!');
-            toast.success('Producto agregado al carrito');
-            dispatch(changeProductInCart({
-                quantity: 1,
-                image: product.image,
-                price: product.price,
-                title: product.title,
-                productId: product.id,
-                subtotal: product.price,
-            }));
-        } else if (state === 'default') {
-            //* TODO: REMOVE PRODUCT FROM SHOPPING-CART.
-            console.log('REMOVE PRODUCT IN CART');
-            dispatch(deleteProductInCart(product.id));
-        }
-    };
 
     return (
         <Card p='card-product'>
@@ -71,16 +47,18 @@ const CardProduct = ({ product, newProduct, offerProduct }: Props) => {
             </CardContent>
             <IconAction
                 p='card-product'
-                onAction={handleAction}
+                onAction={handleActionCart}
                 iconDefault={<BiPlus />}
                 iconAction={<FiTrash2 />}
-                activeAction={changeActiveAction}
+                activeAction={!!productCart}
                 className='card-product__icon-action--add'
             />
             <IconAction
                 p='card-product'
+                onAction={handleActionFav}
                 iconAction={<AiFillHeart />}
                 iconDefault={<AiOutlineHeart />}
+                activeAction={!!productFav}
                 className='card-product__icon-action--heart'
             />
 

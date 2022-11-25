@@ -1,0 +1,67 @@
+.favorite-product {
+  position: relative;
+
+  &__title {
+    font-size: var(--h4-font-size);
+  }
+
+  &__price {
+    font-size: var(--h3-font-size);
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  //* Referencia al componente IconAction.
+  $c-ia: '.c-icon-action';
+  &__iconAction#{$c-ia} {
+    font-size: 1rem;
+    background-color: var(--first-color-alt);
+    color: white;
+
+    > * {
+      font-size: 1.25rem;
+    }
+  }
+  &__iconAction--remove#{$c-ia} {
+    background-color: red;
+  }
+
+  //* Referencia al componente Counter.
+  $c-counter: '.counter';
+  &__counter#{$c-counter} {
+    font-size: 1rem;
+  }
+
+  //* Referencia al componente Card
+  $c-c: '.c-card';
+  &#{$c-c} {
+    display: flex;
+    gap: 0.75rem;
+    flex-direction: row;
+
+    #{$c-c}-image {
+      width: 70px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #{$c-c}-content {
+      flex: 1;
+      gap: 0.5em;
+      display: flex;
+      padding: 0;
+      padding: 0.25rem;
+      padding-right: 2em;
+      flex-direction: column;
+    }
+  }
+}

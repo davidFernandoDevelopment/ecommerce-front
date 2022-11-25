@@ -1,0 +1,17 @@
+.bottom-product-detail {
+  //* Referencia al componente Appbar
+  $c-appbar: '.c-appbar';
+  &__appbar#{$c-appbar} {
+    padding: 0.5rem;
+    top: auto;
+    bottom: -100%;
+    background-color: var(--container-color);
+    box-shadow: 0 -2px 4px 0 hsla(0, 0%, 0%, 0.25);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    &.is-active {
+      bottom: 0;
+    }
+  }
+}

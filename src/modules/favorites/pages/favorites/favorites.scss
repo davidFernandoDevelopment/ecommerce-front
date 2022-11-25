@@ -2,4 +2,8 @@
 
 .favorites {
   @include l.header-space-layout;
+
+  display: grid;
+  gap: 0.57rem;
+  padding-bottom: 80px;
 }

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { FiTrash2 } from 'react-icons/fi';
 
 import './cart-product.scss';
@@ -6,6 +6,7 @@ import { Counter, StateCounter } from '../../../../ui';
 import { useAppDispatch } from '../../../../store/useStore';
 import { changeProductInCart, deleteProductInCart } from '../../../cart/store';
 import { Card, CardContent, CardImage, IconButton, Image } from '../../../../bemit/components';
+
 
 
 interface Props {
@@ -27,6 +28,11 @@ const CartProduct: FC<Props> = ({
 }) => {
     const [q, setQ] = useState(quantity);
     const dispatch = useAppDispatch();
+
+
+    useEffect(() => {
+        setQ(quantity);
+    }, [quantity]);
 
 
     const handleCount = (type: StateCounter) => {

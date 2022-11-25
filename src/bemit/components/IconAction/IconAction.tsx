@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './c-icon-action.scss';
 import { IconButton, StateIconAction } from '..';
@@ -15,14 +15,17 @@ interface Props {
 }
 
 
-const IconAction = ({
-    onAction,
-    p: parent,
-    className,
-    iconAction,
-    iconDefault,
-    activeAction = false,
-}: Props) => {
+const IconAction = React.forwardRef((
+    {
+        onAction,
+        p: parent,
+        className,
+        iconAction,
+        iconDefault,
+        activeAction = false,
+    }: Props,
+    ref: React.ForwardedRef<HTMLButtonElement>
+) => {
     const [active, setActive] = useState(activeAction);
     const classes = classNames([{ [`${parent}__icon-action`]: parent }]);
 
@@ -38,6 +41,7 @@ const IconAction = ({
 
     return (
         <IconButton
+            ref={ref}
             onClick={handleClick}
             className={`${className} c-icon-action ${classes}`}
         >
@@ -56,5 +60,5 @@ const IconAction = ({
             }
         </IconButton>
     );
-};
+});
 export default IconAction;

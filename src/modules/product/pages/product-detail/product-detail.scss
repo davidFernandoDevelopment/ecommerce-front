@@ -1,8 +1,15 @@
 .product-detail {
-  background-color: var(--body-color);
   height: 100vh;
+  overflow: auto;
   position: relative;
+  padding-bottom: 1rem;
   z-index: calc(var(--z-app-bar) + 5);
+  background-color: var(--body-color);
+
+  transition: padding-bottom var(--transition);
+  &.show-bottom-bar {
+    padding-bottom: calc(2rem + var(--header-height));
+  }
 
   &__cards {
     display: flex;
@@ -40,8 +47,16 @@
   &__price {
     align-self: center;
   }
-  &__button {
-    margin-top: 1rem;
+
+  &__priceTotal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  //* Referencia al componente Counter
+  $c-count: '.c-counter';
+  &__counter#{$c-count} {
   }
 
   //* Referencia al componente Image
@@ -53,7 +68,9 @@
   //* Referencia al componente Card
   $c-c: '.c-card';
   &-card#{$c-c} {
+    gap: 1.5rem;
     padding: 1.25rem;
+    align-items: center;
 
     #{$c-c}-content {
       padding: 0;

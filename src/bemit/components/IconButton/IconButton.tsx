@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
 import './c-icon-button.scss';
 
@@ -8,7 +8,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
 }
 
-const IconButton = ({ children, className, ...rest }: Props) => {
+const IconButton = React.forwardRef((
+    { children, className, ...rest }: Props,
+    ref: React.ForwardedRef<HTMLButtonElement>
+) => {
 
     const classes = classnames([
         'c-icon-button',
@@ -16,9 +19,9 @@ const IconButton = ({ children, className, ...rest }: Props) => {
     ]);
 
     return (
-        <button className={classes} {...rest}>
+        <button ref={ref} className={classes} {...rest}>
             {children}
         </button>
     );
-};
+});
 export default IconButton;

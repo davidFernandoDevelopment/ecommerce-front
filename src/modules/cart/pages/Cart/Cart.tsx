@@ -12,6 +12,12 @@ import { useAppSelector } from '../../../../store';
 const Cart = () => {
     const cartRef = useRef<HTMLDivElement>(null);
     const { products, total } = useAppSelector(state => state.cart);
+    // const [products, setProducts] = useState(p);
+
+    // useEffect(() => {
+    //     console.log({ p });
+    //     setProducts(p);
+    // }, [p]);
 
     useEffect(() => {
         uiStateService
@@ -31,6 +37,7 @@ const Cart = () => {
     const closeCart = () => {
         uiStateService.setSubject(false);
     };
+    console.log({ products });
 
     return (
         <div ref={cartRef} className='cart'>
@@ -43,7 +50,7 @@ const Cart = () => {
                 <div className="cart__products">
                     {
                         products.map((p) => (
-                            <CartProduct key={p.productId} {...p} />
+                            <CartProduct key={p.productId} {...p} quantity={p.quantity} />
                         ))
                     }
                 </div>

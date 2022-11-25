@@ -29,12 +29,12 @@ export const cartSlice = createSlice({
 					p.productId === productId ? { ...p, quantity, subtotal } : p
 				);
 			} else {
-				state.total = state.total + payload.price;
+				state.total = state.total + payload.price * quantity;
 				state.products = [
 					...state.products,
 					{
 						...payload,
-						quantity: 1,
+						quantity,
 					},
 				];
 			}

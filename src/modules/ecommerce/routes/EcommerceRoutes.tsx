@@ -7,7 +7,8 @@ import { BottomBarEcco } from '../../../ui';
 import { Header, Home, Content, SearchProducts } from '../';
 import { Categories } from '../../category';
 import { RoutesNotWithFound } from '../../../utilities';
-import { Favorites, ProductRoutes, useProductStore } from '../../product';
+import { ProductRoutes, useProductStore } from '../../product';
+import { Favorites } from '../../favorites';
 
 
 //* VISTA PARA ECOMMERCE
