@@ -18,6 +18,9 @@
   }
 
   &__number {
+    display: inline;
     padding: 0.125em;
+    max-width: 3rem;
+    text-align: center;
   }
 }

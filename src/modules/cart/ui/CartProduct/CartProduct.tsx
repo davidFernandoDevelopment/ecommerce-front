@@ -35,9 +35,16 @@ const CartProduct: FC<Props> = ({
     }, [quantity]);
 
 
-    const handleCount = (type: StateCounter) => {
-        let cant = type === 'minus'
-            ? Math.max(q - 1, 1) : q + 1;
+    const handleCount = (type: StateCounter, value?: number) => {
+        let cant;
+
+        if (type === 'minus') {
+            cant = Math.max(q - 1, 1);
+        } else if (type === 'setValue') {
+            cant = value ? value : q;
+        } else {
+            cant = q + 1;
+        }
         setQ(cant);
 
         dispatch(changeProductInCart({

@@ -42,9 +42,12 @@ const ProductDetail = () => {
         }
     }, [products]);
 
-    const handleCount = (state: StateCounter) => {
+    const handleCount = (state: StateCounter, value?: number) => {
         if (state === 'plus') {
             setQ(q + 1);
+            return;
+        } else if (state === 'setValue') {
+            if (value) setQ(+value);
             return;
         }
         setQ(Math.max(q - 1, 0));

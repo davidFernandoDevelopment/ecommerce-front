@@ -1,1 +1,1 @@
-export type StateCounter = 'plus' | 'minus';
+export type StateCounter = 'plus' | 'minus' | 'setValue';
