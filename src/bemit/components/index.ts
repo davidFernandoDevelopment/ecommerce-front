@@ -14,5 +14,7 @@ export * from './MenuItem';
 export * from './MenuList';
 export * from './Ribbon';
 export * from './Search';
+export * from './Tab';
+export * from './Tabs';
 export * from './TextField';
 export * from './Toolbar';

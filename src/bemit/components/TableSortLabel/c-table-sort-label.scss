@@ -1,0 +1,18 @@
+.c-table-sort-label {
+  display: inline-flex;
+  align-items: center;
+
+  &__icon {
+    font-size: 18px;
+    margin-left: 4px;
+    margin-right: 4px;
+
+    &--asc {
+      transform: rotate(180deg);
+    }
+
+    &--desc {
+      transform: rotate(0deg);
+    }
+  }
+}

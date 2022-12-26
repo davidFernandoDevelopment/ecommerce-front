@@ -1,0 +1,14 @@
+.c-tabs {
+  display: flex;
+  position: relative;
+
+  &__indicator {
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    display: block;
+    background-color: var(--first-color-alt);
+
+    transition: transform 0.3s ease;
+  }
+}

@@ -1,0 +1,73 @@
+.profile {
+  z-index: calc(var(--z-app-bar) + 1);
+
+  &__container {
+    margin-top: 1.5rem;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  &__name {
+    font-size: var(--h2-font-size);
+  }
+  &__email {
+  }
+
+  &__subtitle {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  &__actions {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__change-account {
+    color: var(--first-color-alt);
+  }
+  &__logout {
+    color: red;
+  }
+
+  //* Referencia al componente Tabs.
+  $c-t: '.c-tabs';
+  &__tabs#{$c-t} {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  //* Referencia al componente HeaderAction.
+  &__header {
+    top: 0;
+    position: sticky;
+  }
+
+  //* Referencia al componente Image.
+  $c-i: '.c-image';
+  &__img#{$c-i} {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+
+    img {
+      object-fit: cover;
+    }
+  }
+}
